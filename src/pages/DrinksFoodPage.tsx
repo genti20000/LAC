@@ -1,0 +1,285 @@
+import React, { useState } from 'react';
+import { PageId, MenuItem } from '../types';
+import { MENU_ITEMS } from '../data/menuData';
+import { Wine, Search, Heart, Sparkles, Filter, Check, Calendar, Info, Share2 } from 'lucide-react';
+
+interface DrinksFoodPageProps {
+  onNavigate: (page: PageId) => void;
+  savedPairings: string[];
+  onToggleSavedPairing: (id: string) => void;
+  onOpenQuiz: () => void;
+}
+
+export const DrinksFoodPage: React.FC<DrinksFoodPageProps> = ({
+  onNavigate,
+  savedPairings,
+  onToggleSavedPairing,
+  onOpenQuiz
+}) => {
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [tagFilter, setTagFilter] = useState<string>('all');
+  const [showSavedOnly, setShowSavedOnly] = useState<boolean>(false);
+
+  const categories = [
+    { id: 'all', label: 'All Offerings' },
+    { id: 'aperitivi', label: 'Aperitivi & Spritzes' },
+    { id: 'vermouth', label: 'Vermouth & Bitters' },
+    { id: 'wines', label: 'Wines by Glass & Bottle' },
+    { id: 'small-plates', label: 'Small Plates & Cicchetti' },
+    { id: 'charcuterie', label: 'Charcuterie & Cheese' },
+    { id: 'digestivi', label: 'Digestivi & Afters' },
+  ];
+
+  const tagsList = ['All Tags', 'Signature', 'Low-ABV', 'GF', 'VG', 'V', 'Sommelier Pick'];
+
+  // Filter logic
+  const filteredItems = MENU_ITEMS.filter((item) => {
+    // Saved filter
+    if (showSavedOnly && !savedPairings.includes(item.id)) return false;
+
+    // Category filter
+    if (activeCategory !== 'all' && item.category !== activeCategory) return false;
+
+    // Tag filter
+    if (tagFilter !== 'all' && tagFilter !== 'All Tags') {
+      if (!item.tags?.some((t) => t.toLowerCase() === tagFilter.toLowerCase())) {
+        return false;
+      }
+    }
+
+    // Search query filter
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      const matchName = item.name.toLowerCase().includes(q);
+      const matchDesc = item.description.toLowerCase().includes(q);
+      const matchItalian = item.italianName?.toLowerCase().includes(q);
+      const matchTasting = item.tastingNotes?.toLowerCase().includes(q);
+      return matchName || matchDesc || matchItalian || matchTasting;
+    }
+
+    return true;
+  });
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      
+      {/* Header Title */}
+      <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <span className="text-[#C5A059] text-xs font-mono uppercase tracking-widest block">
+          CURATED MENU · SOHO LONDON
+        </span>
+        <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#FDFBF7]">
+          Drinks, Spritzes & Cicchetti
+        </h1>
+        <p className="text-xs sm:text-sm text-[#FDFBF7]/80 leading-relaxed">
+          Explore our Italian botanical aperitivi, cask-rested house Negronis, artisanal vermouths, and Venetian cicchetti. Select your favorites to build a personal pairing list for your visit.
+        </p>
+
+        {/* Quiz Banner */}
+        <div className="pt-2">
+          <button
+            onClick={onOpenQuiz}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A0E17] hover:bg-[#2C0A0E] border border-[#C5A059] text-[#DFBE7B] font-semibold text-xs tracking-wider uppercase rounded shadow-lg transition-all"
+          >
+            <Sparkles className="w-4 h-4 text-[#C5A059]" />
+            <span>Not sure what to order? Take the Aperitivo Finder Quiz</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Control Bar: Categories + Search + Saved Toggle */}
+      <div className="bg-[#1F0609] border border-[#C5A059]/30 rounded-xl p-4 sm:p-6 space-y-4 shadow-xl">
+        
+        {/* Category Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-[#C5A059]/20">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => {
+                setActiveCategory(cat.id);
+                setShowSavedOnly(false);
+              }}
+              className={`px-4 py-2 text-xs font-semibold tracking-wide whitespace-nowrap rounded-md transition-all ${
+                activeCategory === cat.id && !showSavedOnly
+                  ? 'bg-[#C5A059] text-[#2C0A0E]'
+                  : 'text-[#FDFBF7]/80 hover:text-[#DFBE7B] hover:bg-[#2C0A0E]'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Second Row: Search + Tag Filters + Saved Pairings Toggle */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
+          
+          {/* Search Box */}
+          <div className="relative w-full sm:w-72">
+            <Search className="w-4 h-4 absolute left-3 top-3 text-[#C5A059]" />
+            <input
+              type="text"
+              placeholder="Search Spritz, Negroni, Prosciutto..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-4 py-2 bg-[#2C0A0E] border border-[#C5A059]/30 rounded text-xs text-[#FDFBF7] placeholder-[#FDFBF7]/40 focus:outline-none focus:border-[#C5A059]"
+            />
+          </div>
+
+          {/* Tags Dropdown / Filter */}
+          <div className="flex items-center gap-3 w-full sm:w-auto overflow-x-auto">
+            <span className="text-xs text-[#C5A059] font-mono whitespace-nowrap flex items-center gap-1">
+              <Filter className="w-3 h-3" /> Filter Tag:
+            </span>
+            <div className="flex items-center gap-1.5">
+              {tagsList.map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => setTagFilter(tag === tagFilter ? 'all' : tag)}
+                  className={`px-2.5 py-1 text-[11px] rounded font-mono transition-colors whitespace-nowrap ${
+                    tagFilter === tag || (tag === 'All Tags' && tagFilter === 'all')
+                      ? 'bg-[#4A0E17] text-[#DFBE7B] border border-[#C5A059]/50'
+                      : 'bg-[#2C0A0E] text-[#FDFBF7]/60 hover:text-[#FDFBF7]'
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Saved Shortlist Button */}
+          <button
+            onClick={() => setShowSavedOnly(!showSavedOnly)}
+            className={`px-4 py-2 text-xs font-semibold rounded border transition-all flex items-center gap-1.5 whitespace-nowrap w-full sm:w-auto justify-center ${
+              showSavedOnly
+                ? 'bg-[#C5A059] text-[#2C0A0E] border-[#C5A059]'
+                : 'bg-[#2C0A0E] text-[#DFBE7B] border-[#C5A059]/40 hover:border-[#C5A059]'
+            }`}
+          >
+            <Heart className={`w-3.5 h-3.5 ${savedPairings.length > 0 ? 'fill-current' : ''}`} />
+            <span>My Visit Pairings ({savedPairings.length})</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Menu Items Grid */}
+      {filteredItems.length === 0 ? (
+        <div className="text-center py-16 bg-[#1F0609] border border-[#C5A059]/20 rounded-xl space-y-4">
+          <Info className="w-8 h-8 text-[#C5A059] mx-auto" />
+          <h3 className="font-serif text-2xl font-bold text-[#FDFBF7]">No Items Found</h3>
+          <p className="text-xs text-[#FDFBF7]/70">Try clearing your search query or adjusting your filters.</p>
+          <button
+            onClick={() => {
+              setActiveCategory('all');
+              setSearchQuery('');
+              setTagFilter('all');
+              setShowSavedOnly(false);
+            }}
+            className="px-4 py-2 bg-[#C5A059] text-[#2C0A0E] font-bold text-xs rounded uppercase tracking-wider"
+          >
+            Reset All Filters
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredItems.map((item) => {
+            const isSaved = savedPairings.includes(item.id);
+            return (
+              <div
+                key={item.id}
+                className="bg-[#1F0609] border border-[#C5A059]/30 rounded-xl p-6 flex flex-col justify-between hover:border-[#C5A059] transition-all duration-300 shadow-xl relative group"
+              >
+                {/* Save Heart Button */}
+                <button
+                  onClick={() => onToggleSavedPairing(item.id)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-[#2C0A0E] border border-[#C5A059]/30 text-[#C5A059] hover:scale-110 transition-transform"
+                  title={isSaved ? 'Remove from My Visit Pairings' : 'Save to My Visit Pairings'}
+                >
+                  <Heart className={`w-4 h-4 ${isSaved ? 'fill-current text-[#C5A059]' : 'text-[#FDFBF7]/50'}`} />
+                </button>
+
+                <div className="space-y-3 pr-8">
+                  {/* Category / Italian Name */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono text-[#C5A059] uppercase tracking-wider">
+                      {item.italianName || item.category.replace('-', ' ')}
+                    </span>
+                    {item.tags?.map((t) => (
+                      <span key={t} className="text-[9px] px-1.5 py-0.5 bg-[#4A0E17] text-[#DFBE7B] rounded font-mono">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Name & Price */}
+                  <div className="flex items-baseline justify-between gap-2">
+                    <h3 className="font-serif text-xl font-bold text-[#FDFBF7] group-hover:text-[#DFBE7B] transition-colors">
+                      {item.name}
+                    </h3>
+                  </div>
+
+                  <span className="font-serif text-lg font-bold text-[#C5A059] block">
+                    {item.price}
+                  </span>
+
+                  <p className="text-xs text-[#FDFBF7]/75 leading-relaxed">
+                    {item.description}
+                  </p>
+
+                  {item.tastingNotes && (
+                    <div className="p-2.5 bg-[#2C0A0E] rounded border border-[#C5A059]/20 text-[11px] text-[#DFBE7B] font-serif italic">
+                      <span className="font-mono text-[9px] text-[#C5A059] uppercase not-italic block">Sommelier Notes:</span>
+                      "{item.tastingNotes}"
+                    </div>
+                  )}
+                </div>
+
+                {/* Footer pairing advice */}
+                <div className="pt-4 mt-4 border-t border-[#C5A059]/20 flex items-center justify-between text-xs">
+                  {item.pairingRecommendation ? (
+                    <span className="text-[10px] text-[#C5A059] italic flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-[#C5A059]" />
+                      <span>Pairs with: {item.pairingRecommendation}</span>
+                    </span>
+                  ) : (
+                    <span className="text-[10px] text-[#FDFBF7]/40">Served at London Aperitivo Club Soho</span>
+                  )}
+
+                  <button
+                    onClick={() => onToggleSavedPairing(item.id)}
+                    className={`text-[10px] font-mono uppercase underline ${
+                      isSaved ? 'text-[#C5A059] font-bold' : 'text-[#FDFBF7]/60 hover:text-[#C5A059]'
+                    }`}
+                  >
+                    {isSaved ? 'Saved ✓' : '+ Add Pairing'}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Floating Sticky Bar if pairings exist */}
+      {savedPairings.length > 0 && (
+        <div className="fixed bottom-6 right-6 z-30 bg-[#4A0E17] border-2 border-[#C5A059] rounded-xl p-4 shadow-2xl flex items-center gap-4 text-[#FDFBF7] animate-bounce-short">
+          <div className="space-y-0.5">
+            <span className="font-serif text-sm font-bold text-[#DFBE7B] block">
+              {savedPairings.length} Saved Menu Pairing{savedPairings.length > 1 ? 's' : ''}
+            </span>
+            <span className="text-[10px] text-[#FDFBF7]/70 block">Ready to try them in Soho?</span>
+          </div>
+
+          <button
+            onClick={() => onNavigate('book')}
+            className="px-4 py-2 bg-[#C5A059] hover:bg-[#DFBE7B] text-[#2C0A0E] font-bold text-xs uppercase tracking-wider rounded flex items-center gap-1.5 shadow-md"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book Table</span>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};

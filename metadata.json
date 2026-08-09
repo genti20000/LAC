@@ -1,0 +1,6 @@
+{
+  "name": "London Aperitivo Club",
+  "description": "Customer-facing hospitality website for London Aperitivo Club in Soho, featuring artisan menus, aperitivo pairings, table bookings, private hire, and vinyl jazz lounge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
