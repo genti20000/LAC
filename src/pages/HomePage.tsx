@@ -3,15 +3,16 @@ import { PageId } from '../types';
 import { Wine, Calendar, Clock, MapPin, Sparkles, ArrowRight, Music, ShieldCheck, Heart, Award, Disc } from 'lucide-react';
 import { VENUE_INFO } from '../data/venueData';
 import { MENU_ITEMS } from '../data/menuData';
+import { AnimatedHeroSlider } from '../components/AnimatedHeroSlider';
+import { AnimatedPosterSlider } from '../components/AnimatedPosterSlider';
 
 // Image assets for London Aperitivo Club Soho
-const HERO_IMAGE = '/src/assets/images/lac_bar_counter_soho_1786315443098.jpg';
+const BAR_COUNTER_IMAGE = '/src/assets/images/lac_bar_counter_soho_1786315443098.jpg';
 const SPRITZ_IMAGE = '/src/assets/images/aperitivo_spritz_plates_1786202515156.jpg';
 const CICCHETTI_IMAGE = '/src/assets/images/lac_cicchetti_board_soho_1786315452773.jpg';
 const VERMOUTH_POUR_IMAGE = '/src/assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
 const BOOTH_IMAGE = '/src/assets/images/lac_subterranean_booth_1786315472218.jpg';
 const VINYL_IMAGE = '/src/assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
-const VAULT_IMAGE = '/src/assets/images/wine_vault_ambiance_1786202528861.jpg';
 const PRIVATE_IMAGE = '/src/assets/images/private_hire_space_1786202544546.jpg';
 
 interface HomePageProps {
@@ -25,76 +26,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
   return (
     <div className="space-y-24 pb-20">
       
-      {/* HERO SECTION */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#1F0609]">
-        {/* Background Venue Hero Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={HERO_IMAGE}
-            alt="London Aperitivo Club Soho bar counter interior"
-            className="w-full h-full object-cover object-center filter brightness-[0.45] contrast-[1.1]"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2C0A0E] via-[#2C0A0E]/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1F0609]/90 via-transparent to-[#1F0609]/90" />
-        </div>
-
-        {/* Content Box */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 pb-16 space-y-8">
-          
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#4A0E17]/80 border border-[#C5A059]/40 text-[#DFBE7B] text-xs font-mono tracking-widest uppercase shadow-xl backdrop-blur-md">
-            <Wine className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span>SUBTERRANEAN SOHO SANCTUARY · 23 FRITH STREET</span>
-          </div>
-
-          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#FDFBF7] leading-[1.08] max-w-4xl mx-auto drop-shadow-lg">
-            Where Soho Meets the Art of the <span className="brass-gradient-text italic font-serif">Italian Aperitivo</span>
-          </h1>
-
-          <p className="text-base sm:text-xl text-[#FDFBF7]/85 max-w-2xl mx-auto font-light leading-relaxed">
-            London’s premier destination for Northern Italian aperitivo culture. Rested oak-barrel Negronis, effervescent Venetian Spritzes, rare sommelier vintages, and hand-carved cicchetti in Soho.
-          </p>
-
-          {/* Action Row */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => onNavigate('book')}
-              className="w-full sm:w-auto px-8 py-4 bg-[#C5A059] hover:bg-[#DFBE7B] text-[#2C0A0E] font-bold text-xs tracking-widest uppercase rounded shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <Calendar className="w-4 h-4" />
-              <span>Reserve A Table Online</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('drinks-food')}
-              className="w-full sm:w-auto px-8 py-4 bg-[#2C0A0E]/80 border border-[#C5A059]/50 hover:border-[#C5A059] text-[#FDFBF7] font-semibold text-xs tracking-widest uppercase rounded backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <span>Explore Menus</span>
-              <ArrowRight className="w-4 h-4 text-[#C5A059]" />
-            </button>
-          </div>
-
-          {/* Key Facts Bar */}
-          <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-[#C5A059]/20 max-w-3xl mx-auto text-xs text-[#FDFBF7]/80 font-mono">
-            <div>
-              <span className="block text-[#C5A059] font-bold text-sm font-serif">16:30 – 18:30</span>
-              <span className="text-[10px] text-[#FDFBF7]/60">Daily Golden Hour</span>
-            </div>
-            <div>
-              <span className="block text-[#C5A059] font-bold text-sm font-serif">Soho Vaults</span>
-              <span className="text-[10px] text-[#FDFBF7]/60">Frith Street Soho</span>
-            </div>
-            <div>
-              <span className="block text-[#C5A059] font-bold text-sm font-serif">Oak-Aged</span>
-              <span className="text-[10px] text-[#FDFBF7]/60">House Negronis</span>
-            </div>
-            <div>
-              <span className="block text-[#C5A059] font-bold text-sm font-serif">Vinyl Analogue</span>
-              <span className="text-[10px] text-[#FDFBF7]/60">Soho Sound System</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ANIMATED HERO SLIDER SHOWCASE */}
+      <AnimatedHeroSlider onNavigate={onNavigate} onOpenQuiz={onOpenQuiz} />
 
       {/* RITUAL & PHILOSOPHY BANNER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -195,6 +128,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
           </div>
         </div>
       </section>
+
+      {/* ANIMATED VINTAGE ITALIAN POSTER SLIDER SHOWCASE */}
+      <AnimatedPosterSlider />
 
       {/* SIGNATURE DRINKS & CICCHETTI PREVIEW */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">

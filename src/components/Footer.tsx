@@ -3,6 +3,7 @@ import { PageId } from '../types';
 import { MapPin, Phone, Mail, Instagram, Clock, ArrowRight } from 'lucide-react';
 import { VENUE_INFO } from '../data/venueData';
 import { BrandLogo } from './BrandLogo';
+import { JazzAmbientAudio } from './JazzAmbientAudio';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -21,9 +22,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer className="bg-[#1F0609] border-t border-[#C5A059]/30 text-[#FDFBF7] pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-[#1F0609] border-t border-[#C5A059]/30 text-[#FDFBF7] pt-12 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        {/* Ambient 1950s Jazz Cafe Audio Soundscape Bar */}
+        <div className="w-full">
+          <JazzAmbientAudio />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           
           {/* Brand & Identity */}
           <div className="space-y-4">

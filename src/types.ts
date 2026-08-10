@@ -17,7 +17,7 @@ export interface EventItem {
   id: string;
   title: string;
   subtitle: string;
-  category: 'Vinyl & Beats' | 'Aperitivo Hours' | 'Masterclass' | 'Tasting';
+  category: 'Vinyl & Beats' | 'Aperitivo Hours' | 'Masterclass' | 'Tasting' | 'Live Music & Cabaret';
   date: string;
   time: string;
   description: string;

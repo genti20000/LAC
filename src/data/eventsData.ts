@@ -2,6 +2,17 @@ import { EventItem } from '../types';
 
 export const EVENTS_DATA: EventItem[] = [
   {
+    id: 'la-bella-burlesque-cabaret',
+    title: 'La Bella Cabaret: Live Music & Burlesque',
+    subtitle: 'Sensual Live Jazz Vocals & Vintage Burlesque',
+    category: 'Live Music & Cabaret',
+    date: 'Every Friday & Saturday Night',
+    time: '21:00 – Late (Show starts 21:30)',
+    description: 'Immerse in the seductive world of vintage Milano-Soho cabaret. Sizzling live jazz vocals, spellbinding burlesque siren performances, and candlelit cocktail service.',
+    highlight: 'Featured Live Singer performance + complimentary midnight spritz toast',
+    priceInfo: 'Table Reservation Recommended · Free Entry before 21:00',
+  },
+  {
     id: 'soho-sunset-spritz-hours',
     title: 'Soho Sunset Spritz Hours',
     subtitle: 'Daily Golden Hour Ritual',
