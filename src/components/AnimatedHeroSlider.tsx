@@ -158,53 +158,37 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
         >
+          {/* Image Display: Full screen object-cover for photos, cropped on entrance in portrait for 1st slide, contained fit for poster art */}
           {activeSlide.type === 'poster' ? (
-            /* Poster Display: Centered with ambient glow and full containment */
-            <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8 bg-[#1A0508]">
-              {/* Blurred background glow */}
+            <div className="relative w-full h-full flex items-center justify-center p-3 sm:p-8 bg-[#100305]">
+              {/* Ambient blurred backdrop */}
               <img
                 src={activeSlide.image}
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-30 pointer-events-none transition-opacity duration-1000 ease-out animate-hero-fade-in"
+                className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-35 pointer-events-none scale-105"
               />
-              {/* Crisp Poster Image */}
+              {/* Contained poster artwork */}
               <img
                 src={activeSlide.image}
                 alt={activeSlide.title}
-                className="relative z-10 max-h-[82vh] max-w-full object-contain rounded-xl border border-[#C5A059]/40 shadow-2xl animate-hero-fade-in transition-all duration-1000 ease-out"
+                className="relative z-10 max-h-[76vh] sm:max-h-[82vh] max-w-[88vw] sm:max-w-full object-contain rounded-xl border border-[#C5A059]/40 shadow-2xl animate-hero-fade-in transition-all duration-1000 ease-out"
                 referrerPolicy="no-referrer"
               />
             </div>
           ) : (
-            /* Venue Photography: Full Screen Cover */
             <img
               src={activeSlide.image}
               alt={activeSlide.title}
-              className="w-full h-full object-cover object-center filter brightness-[0.9] contrast-[1.05] animate-hero-fade-in transition-all duration-1000 ease-out"
+              className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.05] animate-hero-fade-in transition-all duration-1000 ease-out"
               referrerPolicy="no-referrer"
             />
           )}
         </motion.div>
       </AnimatePresence>
 
-      {/* Floating Reservation Quick-Action Bar Top Right */}
-      <div className="absolute top-6 right-6 z-20 flex items-center gap-3">
-        <button
-          onClick={() => onNavigate('book')}
-          className="px-5 py-2.5 bg-[#C5A059] text-[#2C0A0E] hover:bg-[#DFBE7B] transition-all duration-300 font-serif font-bold text-xs tracking-wider uppercase rounded-full shadow-2xl flex items-center gap-2 cursor-pointer"
-        >
-          <Calendar className="w-3.5 h-3.5" />
-          <span>Reserve Table</span>
-        </button>
 
-        <button
-          onClick={() => onNavigate('drinks-food')}
-          className="hidden sm:flex px-4 py-2.5 bg-[#1F0609]/80 border border-[#C5A059]/60 text-[#DFBE7B] hover:bg-[#4A0E17] transition-all duration-300 font-serif font-bold text-xs tracking-wider uppercase rounded-full shadow-2xl backdrop-blur-md items-center gap-2 cursor-pointer"
-        >
-          <Wine className="w-3.5 h-3.5 text-[#C5A059]" />
-          <span>Menu</span>
-        </button>
-      </div>
+
+
 
       {/* Slider Left Arrow */}
       <button
