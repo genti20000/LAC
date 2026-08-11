@@ -3,7 +3,7 @@ import { PageId, EventItem } from '../types';
 import { EVENTS_DATA } from '../data/eventsData';
 import { Music, Calendar, Clock, Sparkles, Filter, Wine, ArrowRight, Ticket } from 'lucide-react';
 
-const VAULT_IMAGE = '/src/assets/images/wine_vault_ambiance_1786202528861.jpg';
+import VAULT_IMAGE from '../assets/images/wine_vault_ambiance_1786202528861.jpg';
 
 interface WhatsOnPageProps {
   onNavigate: (page: PageId) => void;

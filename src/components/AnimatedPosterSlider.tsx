@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, ZoomIn, X, Sparkles, BookOpen, Quote, ShieldCheck } from 'lucide-react';
 
+import posterBurlesque from '../assets/images/burlesque_poster_art_1786331567078.jpg';
+import posterMilanoNy from '../assets/images/milano_ny_poster_art_1786331429944.jpg';
+import posterSpritz from '../assets/images/lac_vintage_poster_spritz_1786330104445.jpg';
+import posterVermouth from '../assets/images/lac_vintage_poster_vermouth_1786330118529.jpg';
+import posterCampari from '../assets/images/lac_poster_campari_30s_1786330308931.jpg';
+import posterCicchetti from '../assets/images/lac_poster_cicchetti_40s_1786330322410.jpg';
+
 interface VintagePoster {
   id: string;
   year: string;
@@ -21,7 +28,7 @@ const VINTAGE_POSTERS: VintagePoster[] = [
     year: '1930s',
     title: 'La Bella Cabaret & Live Burlesque',
     tagline: 'Seductive Milano-Soho Cabaret Nightlife',
-    image: '/src/assets/images/burlesque_poster_art_1786331567078.jpg',
+    image: posterBurlesque,
     style: '1930s Italian Art Deco Cabaret Poster',
     locationInClub: 'Subterranean Stage Entry & VIP Lounge Wall',
     description:
@@ -34,7 +41,7 @@ const VINTAGE_POSTERS: VintagePoster[] = [
     year: '1950s',
     title: 'Milano Soho Manhattan Transatlantic',
     tagline: 'High Fashion Meets Soho Industrial Loft Vibe',
-    image: '/src/assets/images/milano_ny_poster_art_1786331429944.jpg',
+    image: posterMilanoNy,
     style: 'Transatlantic Modernist Graphic Poster',
     locationInClub: 'Central Bar Counter Wall Display',
     description:
@@ -47,7 +54,7 @@ const VINTAGE_POSTERS: VintagePoster[] = [
     year: '1950s',
     title: 'Il Spritz Veneziano',
     tagline: 'The Golden Age of Effervescence',
-    image: '/src/assets/images/lac_vintage_poster_spritz_1786330104445.jpg',
+    image: posterSpritz,
     style: 'Mid-Century Italian Graphic Art',
     locationInClub: 'Framed in Vault Alcove 2',
     description:
@@ -60,7 +67,7 @@ const VINTAGE_POSTERS: VintagePoster[] = [
     year: '1920s',
     title: 'Vermouth di Torino Extra Superior',
     tagline: 'Art Deco Botanical Masterpiece',
-    image: '/src/assets/images/lac_vintage_poster_vermouth_1786330118529.jpg',
+    image: posterVermouth,
     style: 'Art Deco Gold & Crimson Lithograph',
     locationInClub: 'Hanging above the Main Bar Counter',
     description:
@@ -73,7 +80,7 @@ const VINTAGE_POSTERS: VintagePoster[] = [
     year: '1930s',
     title: 'Futurismo e Bitter Campari',
     tagline: 'Geometric Avant-Garde Italian Graphic',
-    image: '/src/assets/images/lac_poster_campari_30s_1786330308931.jpg',
+    image: posterCampari,
     style: 'Italian Futurist Graphic Movement',
     locationInClub: 'Displayed at 23 Frith St Entrance Vestibule',
     description:
@@ -86,7 +93,7 @@ const VINTAGE_POSTERS: VintagePoster[] = [
     year: '1940s',
     title: 'Vino e Cicchetti di Venezia',
     tagline: 'The Bacaro Gastronomic Heritage',
-    image: '/src/assets/images/lac_poster_cicchetti_40s_1786330322410.jpg',
+    image: posterCicchetti,
     style: 'Classic Venetian Tavern Lithograph',
     locationInClub: 'Mounted in Private Dining Vault',
     description:

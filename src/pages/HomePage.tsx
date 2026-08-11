@@ -7,13 +7,13 @@ import { AnimatedHeroSlider } from '../components/AnimatedHeroSlider';
 import { AnimatedPosterSlider } from '../components/AnimatedPosterSlider';
 
 // Image assets for London Aperitivo Club Soho
-const BAR_COUNTER_IMAGE = '/src/assets/images/lac_bar_counter_soho_1786315443098.jpg';
-const SPRITZ_IMAGE = '/src/assets/images/aperitivo_spritz_plates_1786202515156.jpg';
-const CICCHETTI_IMAGE = '/src/assets/images/lac_cicchetti_board_soho_1786315452773.jpg';
-const VERMOUTH_POUR_IMAGE = '/src/assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
-const BOOTH_IMAGE = '/src/assets/images/lac_subterranean_booth_1786315472218.jpg';
-const VINYL_IMAGE = '/src/assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
-const PRIVATE_IMAGE = '/src/assets/images/private_hire_space_1786202544546.jpg';
+import BAR_COUNTER_IMAGE from '../assets/images/lac_bar_counter_soho_1786315443098.jpg';
+import SPRITZ_IMAGE from '../assets/images/aperitivo_spritz_plates_1786202515156.jpg';
+import CICCHETTI_IMAGE from '../assets/images/lac_cicchetti_board_soho_1786315452773.jpg';
+import VERMOUTH_POUR_IMAGE from '../assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
+import BOOTH_IMAGE from '../assets/images/lac_subterranean_booth_1786315472218.jpg';
+import VINYL_IMAGE from '../assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
+import PRIVATE_IMAGE from '../assets/images/private_hire_space_1786202544546.jpg';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;

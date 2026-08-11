@@ -3,6 +3,21 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Calendar, Wine } from 'lucide-react';
 import { PageId } from '../types';
 
+import burlesquePerfImg from '../assets/images/burlesque_singer_perf_1786331553709.jpg';
+import burlesquePosterImg from '../assets/images/burlesque_poster_art_1786331567078.jpg';
+import milanoLoungeImg from '../assets/images/milano_ny_aperitivo_lounge_1786331418627.jpg';
+import milanoPosterImg from '../assets/images/milano_ny_poster_art_1786331429944.jpg';
+import vaultsImg from '../assets/images/lac_hero_subterranean_vaults_1786330130388.jpg';
+import spritzPosterImg from '../assets/images/lac_vintage_poster_spritz_1786330104445.jpg';
+import entranceImg from '../assets/images/lac_soho_frith_street_entrance_1786330142680.jpg';
+import vermouthPosterImg from '../assets/images/lac_vintage_poster_vermouth_1786330118529.jpg';
+import barCounterImg from '../assets/images/lac_bar_counter_soho_1786315443098.jpg';
+import campariPosterImg from '../assets/images/lac_poster_campari_30s_1786330308931.jpg';
+import boothImg from '../assets/images/lac_subterranean_booth_1786315472218.jpg';
+import cicchettiPosterImg from '../assets/images/lac_poster_cicchetti_40s_1786330322410.jpg';
+import pourImg from '../assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
+import vinylImg from '../assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
+
 interface HeroSlide {
   id: string;
   image: string;
@@ -14,98 +29,98 @@ interface HeroSlide {
 const HERO_SLIDES: HeroSlide[] = [
   {
     id: 'burlesque-live',
-    image: '/src/assets/images/burlesque_singer_perf_1786331553709.jpg',
+    image: burlesquePerfImg,
     title: 'Live Music & Burlesque Nights · Subterranean Stage',
     type: 'venue',
     subtitle: 'Glamorous live jazz vocals, vintage burlesque performances, and midnight aperitivo',
   },
   {
     id: 'burlesque-poster',
-    image: '/src/assets/images/burlesque_poster_art_1786331567078.jpg',
+    image: burlesquePosterImg,
     title: '1930s La Bella Cabaret & Burlesque Vintage Poster',
     type: 'poster',
     subtitle: 'Original Art Deco cabaret lithograph artwork',
   },
   {
     id: 'milano-ny-lounge',
-    image: '/src/assets/images/milano_ny_aperitivo_lounge_1786331418627.jpg',
+    image: milanoLoungeImg,
     title: 'Milano Fashion Week Meets Soho New York Loft Bar',
     type: 'venue',
     subtitle: 'Polished terrazzo marble, Campari Sbagliato, and Manhattan industrial soul',
   },
   {
     id: 'milano-ny-poster',
-    image: '/src/assets/images/milano_ny_poster_art_1786331429944.jpg',
+    image: milanoPosterImg,
     title: 'Milano x Soho New York Aperitivo Vintage Poster',
     type: 'poster',
     subtitle: 'Crimson gold leaf Art Deco artwork combining Duomo and Manhattan skyline',
   },
   {
     id: 'vaults',
-    image: '/src/assets/images/lac_hero_subterranean_vaults_1786330130388.jpg',
+    image: vaultsImg,
     title: 'London Aperitivo Club · Subterranean Soho Vaults',
     type: 'venue',
     subtitle: 'Candlelit brick vaults and oxblood velvet booths on Frith Street',
   },
   {
     id: 'poster-spritz',
-    image: '/src/assets/images/lac_vintage_poster_spritz_1786330104445.jpg',
+    image: spritzPosterImg,
     title: '1950s Il Spritz Veneziano Vintage Poster',
     type: 'poster',
     subtitle: 'Original mid-century Italian graphic art print',
   },
   {
     id: 'entrance',
-    image: '/src/assets/images/lac_soho_frith_street_entrance_1786330142680.jpg',
+    image: entranceImg,
     title: '23 Frith Street Soho Entrance',
     type: 'venue',
     subtitle: 'Behind the vintage polished brass wall lantern',
   },
   {
     id: 'poster-vermouth',
-    image: '/src/assets/images/lac_vintage_poster_vermouth_1786330118529.jpg',
+    image: vermouthPosterImg,
     title: '1920s Art Deco Vermouth di Torino Poster',
     type: 'poster',
     subtitle: 'Framed above the main bar counter',
   },
   {
     id: 'bar-counter',
-    image: '/src/assets/images/lac_bar_counter_soho_1786315443098.jpg',
+    image: barCounterImg,
     title: 'Soho Bar Counter & Hand-Carved Ice',
     type: 'venue',
     subtitle: 'Rested oak-barrel Negronis and Venetian Spritzes',
   },
   {
     id: 'poster-campari',
-    image: '/src/assets/images/lac_poster_campari_30s_1786330308931.jpg',
+    image: campariPosterImg,
     title: '1930s Italian Futurist Bitter Campari Poster',
     type: 'poster',
     subtitle: 'Display artwork at entrance vestibule',
   },
   {
     id: 'booths',
-    image: '/src/assets/images/lac_subterranean_booth_1786315472218.jpg',
+    image: boothImg,
     title: 'Oxblood Velvet Vault Booths',
     type: 'venue',
     subtitle: 'Intimate seating surrounded by vintage prints',
   },
   {
-    id: 'poster-cicchetti',
-    image: '/src/assets/images/lac_poster_cicchetti_40s_1786330322410.jpg',
+    id: 'poster-campari-cicchetti',
+    image: cicchettiPosterImg,
     title: '1940s Vino e Cicchetti Bacaro Poster',
     type: 'poster',
     subtitle: 'Venetian tavern heritage lithograph',
   },
   {
     id: 'pour',
-    image: '/src/assets/images/lac_vermouth_pour_soho_1786315461286.jpg',
+    image: pourImg,
     title: 'Cask-Aged House Vermouth Pour',
     type: 'venue',
     subtitle: 'Infused with alpine wormwood and citrus peel',
   },
   {
     id: 'vinyl',
-    image: '/src/assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg',
+    image: vinylImg,
     title: '1950s Vinyl Sound System',
     type: 'venue',
     subtitle: 'Italo-jazz spinning softly into the night',

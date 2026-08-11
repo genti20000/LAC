@@ -3,10 +3,10 @@ import { PageId } from '../types';
 import { VENUE_INFO } from '../data/venueData';
 import { MapPin, Wine, Music, Calendar, Clock, Award, Compass, Sparkles, BookOpen } from 'lucide-react';
 
-const HERO_IMAGE = '/src/assets/images/lac_bar_counter_soho_1786315443098.jpg';
-const VAULT_IMAGE = '/src/assets/images/wine_vault_ambiance_1786202528861.jpg';
-const BOOTH_IMAGE = '/src/assets/images/lac_subterranean_booth_1786315472218.jpg';
-const VINYL_IMAGE = '/src/assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
+import HERO_IMAGE from '../assets/images/lac_bar_counter_soho_1786315443098.jpg';
+import VAULT_IMAGE from '../assets/images/wine_vault_ambiance_1786202528861.jpg';
+import BOOTH_IMAGE from '../assets/images/lac_subterranean_booth_1786315472218.jpg';
+import VINYL_IMAGE from '../assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
 
 interface VenuePageProps {
   onNavigate: (page: PageId) => void;

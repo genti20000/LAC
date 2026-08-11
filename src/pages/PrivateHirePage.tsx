@@ -3,7 +3,7 @@ import { PageId } from '../types';
 import { PRIVATE_HIRE_PACKAGES } from '../data/venueData';
 import { Users, Calendar, DollarSign, CheckCircle2, Sparkles, Send, Clock, Wine, Mail, Phone, Info } from 'lucide-react';
 
-const PRIVATE_IMAGE = '/src/assets/images/private_hire_space_1786202544546.jpg';
+import PRIVATE_IMAGE from '../assets/images/private_hire_space_1786202544546.jpg';
 
 interface PrivateHirePageProps {
   onNavigate: (page: PageId) => void;
