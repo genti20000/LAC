@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, Calendar, Wine } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, Sparkles, MapPin, Clock } from 'lucide-react';
 import { PageId } from '../types';
 
 import burlesquePerfImg from '../assets/images/burlesque_singer_perf_1786331553709.jpg';
@@ -28,18 +28,18 @@ interface HeroSlide {
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    id: 'burlesque-live',
-    image: burlesquePerfImg,
-    title: 'Live Music & Burlesque Nights · Subterranean Stage',
-    type: 'venue',
-    subtitle: 'Glamorous live jazz vocals, vintage burlesque performances, and midnight aperitivo',
-  },
-  {
     id: 'burlesque-poster',
     image: burlesquePosterImg,
     title: '1930s La Bella Cabaret & Burlesque Vintage Poster',
     type: 'poster',
     subtitle: 'Original Art Deco cabaret lithograph artwork',
+  },
+  {
+    id: 'burlesque-live',
+    image: burlesquePerfImg,
+    title: 'Live Music & Burlesque Nights · Subterranean Stage',
+    type: 'venue',
+    subtitle: 'Glamorous live jazz vocals, vintage burlesque performances, and midnight aperitivo',
   },
   {
     id: 'milano-ny-lounge',
@@ -134,6 +134,7 @@ interface AnimatedHeroSliderProps {
 
 export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
   onNavigate,
+  onOpenQuiz,
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
@@ -159,7 +160,7 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
 
   return (
     <section
-      className="relative w-full h-[88vh] sm:h-[92vh] flex items-center justify-center overflow-hidden bg-[#100305]"
+      className="relative w-full h-[58vh] sm:h-[88vh] md:h-[92vh] lg:h-[95vh] flex items-center justify-center overflow-hidden bg-[#100305]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -173,20 +174,14 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden"
         >
-          {/* Image Display: Full screen object-cover for photos, cropped on entrance in portrait for 1st slide, contained fit for poster art */}
+          {/* Image Display */}
           {activeSlide.type === 'poster' ? (
-            <div className="relative w-full h-full flex items-center justify-center p-3 sm:p-8 bg-[#100305]">
-              {/* Ambient blurred backdrop */}
-              <img
-                src={activeSlide.image}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover filter blur-3xl opacity-35 pointer-events-none scale-105"
-              />
-              {/* Contained poster artwork */}
+            <div className="relative w-full h-full flex items-center justify-center p-3 sm:p-4 bg-[#100305]">
+              {/* Full poster image formatted in portrait ratio on mobile */}
               <img
                 src={activeSlide.image}
                 alt={activeSlide.title}
-                className="relative z-10 max-h-[76vh] sm:max-h-[82vh] max-w-[88vw] sm:max-w-full object-contain rounded-xl border border-[#C5A059]/40 shadow-2xl animate-hero-fade-in transition-all duration-1000 ease-out"
+                className="relative z-10 max-h-[52vh] sm:max-h-none w-auto h-full sm:w-full object-contain aspect-[3/4] sm:aspect-auto rounded-lg border border-[#C5A059]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-1000 ease-out"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -194,38 +189,69 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
             <img
               src={activeSlide.image}
               alt={activeSlide.title}
-              className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.05] animate-hero-fade-in transition-all duration-1000 ease-out"
+              className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.05] transition-all duration-1000 ease-out"
               referrerPolicy="no-referrer"
             />
           )}
         </motion.div>
       </AnimatePresence>
 
+      {/* Removed bottom shade overlay to keep image completely unshaded */}
+
+      {/* Floating Hero Info Overlay Card for instant conversion (Desktop & Tablet) */}
+      <div className="hidden sm:flex absolute bottom-6 left-8 right-8 z-20 max-w-4xl mx-auto bg-[#1F0609]/90 border border-[#C5A059]/40 backdrop-blur-md rounded-xl p-5 shadow-2xl items-center justify-between gap-6">
+        <div className="space-y-1 text-left">
+          <div className="flex flex-wrap items-center justify-start gap-2 text-[11px] text-[#C5A059] font-mono">
+            <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> 23 Frith St, Soho</span>
+            <span>·</span>
+            <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Tue–Sat: 16:30–23:30</span>
+          </div>
+          <h1 className="font-serif text-base lg:text-lg font-bold text-[#FDFBF7] line-clamp-1">
+            {activeSlide.title}
+          </h1>
+          <p className="text-xs text-[#E8D5C4] line-clamp-1">
+            {activeSlide.subtitle}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2.5 shrink-0">
+          <button
+            onClick={() => onNavigate('book')}
+            className="px-4 py-2 bg-[#C5A059] hover:bg-[#DFBE7B] text-[#2C0A0E] font-bold text-xs uppercase tracking-wider rounded transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book Table</span>
+          </button>
+
+          <button
+            onClick={onOpenQuiz}
+            className="px-3.5 py-2 bg-[#4A0E17] hover:bg-[#5E121D] border border-[#C5A059]/60 text-[#DFBE7B] font-semibold text-xs rounded transition-all flex items-center gap-1.5 cursor-pointer"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Pairing Quiz</span>
+          </button>
+        </div>
+      </div>
 
 
 
-
-      {/* Slider Left Arrow */}
+      {/* Slider Left Arrow (Minimum 44x44px touch target) */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1F0609]/80 border border-[#C5A059]/60 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer"
-        aria-label="Previous image"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 min-w-[44px] min-h-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1F0609]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer active:scale-95"
+        aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
 
-      {/* Slider Right Arrow */}
+      {/* Slider Right Arrow (Minimum 44x44px touch target) */}
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1F0609]/80 border border-[#C5A059]/60 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer"
-        aria-label="Next image"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 min-w-[44px] min-h-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1F0609]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer active:scale-95"
+        aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
-
-
-
     </section>
   );
 };
-

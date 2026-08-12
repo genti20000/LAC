@@ -12,7 +12,7 @@ interface WhatsOnPageProps {
 export const WhatsOnPage: React.FC<WhatsOnPageProps> = ({ onNavigate }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
-  const categories = ['All', 'Aperitivo Hours', 'Vinyl & Beats', 'Masterclass', 'Tasting'];
+  const categories = ['All', 'Live Music & Cabaret', 'Aperitivo Hours', 'Vinyl & Beats', 'Masterclass', 'Tasting'];
 
   const filteredEvents = activeCategory === 'All'
     ? EVENTS_DATA

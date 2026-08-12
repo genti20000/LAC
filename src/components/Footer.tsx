@@ -51,27 +51,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <h4 className="font-serif text-lg font-bold text-[#C5A059] tracking-wider uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
               Guest Pages
             </h4>
-            <ul className="space-y-2.5 text-xs text-[#FDFBF7]/80">
+            <ul className="space-y-3 text-xs text-[#E8D5C4]">
               <li>
-                <button onClick={() => onNavigate('home')} className="hover:text-[#C5A059] transition-colors">Home & Atmosphere</button>
+                <button onClick={() => onNavigate('home')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Home & Atmosphere</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('drinks-food')} className="hover:text-[#C5A059] transition-colors">Drinks, Spritz & Food Menu</button>
+                <button onClick={() => onNavigate('drinks-food')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Drinks, Spritz & Food Menu</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('venue')} className="hover:text-[#C5A059] transition-colors">The Soho Venue</button>
+                <button onClick={() => onNavigate('venue')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">The Soho Venue</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('private-hire')} className="hover:text-[#C5A059] transition-colors">Private Hire & Vault Buyouts</button>
+                <button onClick={() => onNavigate('private-hire')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Private Hire & Vault Buyouts</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('whats-on')} className="hover:text-[#C5A059] transition-colors">What’s On & Vinyl Sessions</button>
+                <button onClick={() => onNavigate('whats-on')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">What’s On & Vinyl Sessions</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('visit')} className="hover:text-[#C5A059] transition-colors">Visit, Hours & Directions</button>
+                <button onClick={() => onNavigate('visit')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Visit, Hours & Directions</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('book')} className="text-[#C5A059] font-semibold hover:underline">Book A Table Online</button>
+                <button onClick={() => onNavigate('book')} className="text-[#C5A059] font-bold hover:underline py-1 text-left cursor-pointer">Book A Table Online →</button>
               </li>
             </ul>
           </div>
@@ -79,9 +79,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Location & Opening Hours */}
           <div>
             <h4 className="font-serif text-lg font-bold text-[#C5A059] tracking-wider uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
-              Visit & Contact
+              Visit & Hours
             </h4>
-            <div className="space-y-3 text-xs text-[#FDFBF7]/80">
+            <div className="space-y-3 text-xs text-[#E8D5C4]">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
                 <span>{VENUE_INFO.address}</span>
@@ -95,12 +95,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <span>{VENUE_INFO.contactEmail}</span>
               </div>
 
-              <div className="pt-2 border-t border-[#C5A059]/20">
-                <div className="flex items-center gap-2 text-[#C5A059] font-medium mb-1">
+              <div className="pt-2 border-t border-[#C5A059]/20 space-y-1">
+                <div className="flex items-center gap-2 text-[#C5A059] font-semibold">
                   <Clock className="w-3.5 h-3.5" />
                   <span>Aperitivo Golden Hour</span>
                 </div>
-                <p className="text-[11px] text-[#FDFBF7]/70">Tuesday – Saturday: 16:30 – 18:30</p>
+                <p className="text-[11px] text-[#FDFBF7]">Tuesday – Saturday: 16:30 – 18:30</p>
+                <p className="text-[10px] text-[#E8D5C4]/70">Late Lounge Open Tue–Thu 23:30 / Fri–Sat 00:30</p>
               </div>
             </div>
           </div>

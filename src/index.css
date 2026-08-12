@@ -27,7 +27,7 @@
 ::-webkit-scrollbar-thumb {
   background: #4A0E17;
   border-radius: 4px;
-  border: 1px solid #C5A059/30;
+  border: 1px solid rgba(197, 160, 89, 0.3);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C5A059;
@@ -35,9 +35,28 @@
 
 /* Metallic Aged Brass Shimmer Effect */
 .brass-gradient-text {
-  background: linear-gradient(135deg, #DFBE7B 0%, #C5A059 50%, #9A7730 100%);
+  background: linear-gradient(135deg, #FFEAA7 0%, #DFBE7B 40%, #C5A059 70%, #9A7730 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Gold Foil Shimmer Animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(90deg, #FFEAA7 0%, #C5A059 25%, #FFF8E7 50%, #C5A059 75%, #FFEAA7 100%);
+  background-size: 200% auto;
+  color: #C5A059;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 6s linear infinite;
 }
 
 .brass-border {
@@ -45,7 +64,7 @@
 }
 
 .brass-border-glow {
-  box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
 }
 
 .bg-burgundy-dark {

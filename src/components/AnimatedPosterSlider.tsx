@@ -270,7 +270,7 @@ export const AnimatedPosterSlider: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={handlePrev}
-                    className="p-3 rounded-lg bg-[#1F0609] border border-[#C5A059]/40 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer"
+                    className="min-w-[44px] min-h-[44px] p-3 rounded-lg bg-[#1F0609] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer flex items-center justify-center active:scale-95"
                     aria-label="Previous Poster"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -278,7 +278,7 @@ export const AnimatedPosterSlider: React.FC = () => {
 
                   <button
                     onClick={handleNext}
-                    className="p-3 rounded-lg bg-[#1F0609] border border-[#C5A059]/40 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer"
+                    className="min-w-[44px] min-h-[44px] p-3 rounded-lg bg-[#1F0609] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer flex items-center justify-center active:scale-95"
                     aria-label="Next Poster"
                   >
                     <ChevronRight className="w-5 h-5" />

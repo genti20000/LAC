@@ -57,10 +57,26 @@ export const VenuePage: React.FC<VenuePageProps> = ({ onNavigate }) => {
               Designed as a refuge from the clamour of the West End, London Aperitivo Club takes residence within historic brick wine vaults. With dim amber sconces, custom oxblood leather seating, and aged brass counters, every corner invites relaxed conversation and lingering over a second spritz.
             </p>
 
-            <div className="pt-2 flex items-center gap-4 text-xs font-mono text-[#C5A059]">
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4" />
-                <span>23 Frith Street, Soho W1D 4RR</span>
+            <div className="pt-2 space-y-3">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059]">
+                <MapPin className="w-4 h-4 shrink-0" />
+                <span>23 Frith Street, Soho London W1D 4RR</span>
+              </div>
+
+              <div className="p-4 rounded-xl bg-[#1F0609] border border-[#C5A059]/40 space-y-2 text-xs">
+                <div className="flex items-center gap-2 text-[#C5A059] font-bold">
+                  <Clock className="w-4 h-4" />
+                  <span>Standardized Opening Schedule</span>
+                </div>
+                <p className="text-[#FDFBF7] font-medium">
+                  • Aperitivo Golden Hour: <span className="text-[#DFBE7B]">Tuesday – Saturday 16:30 – 18:30</span>
+                </p>
+                <p className="text-[#FDFBF7]/80 text-[11px]">
+                  • Main Bar & Vault Lounge: Tue–Thu 16:30 – 23:30 · Fri–Sat 16:30 – 00:30
+                </p>
+                <p className="text-[#C5A059]/70 text-[10px] italic">
+                  Closed Sundays & Mondays for private buyouts and wine cellar curation.
+                </p>
               </div>
             </div>
           </div>

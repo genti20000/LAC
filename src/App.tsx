@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { PageId, BookingConfirmation } from './types';
+import { Calendar, Sparkles } from 'lucide-react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { AperitivoQuizModal } from './components/AperitivoQuizModal';
@@ -112,6 +113,32 @@ export default function App() {
 
       {/* Footer */}
       <Footer onNavigate={navigateTo} />
+
+      {/* Sticky Mobile Bottom CTA Bar for Instant Conversions */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#1A0507]/95 backdrop-blur-lg border-t border-[#C5A059]/40 p-2.5 px-4 flex items-center justify-between gap-3 shadow-[0_-10px_25px_rgba(0,0,0,0.8)]">
+        <div className="flex items-center gap-2 text-xs text-[#E8D5C4]">
+          <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse"></span>
+          <span className="font-serif font-bold text-[#FDFBF7] tracking-wide">London Aperitivo Club</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setQuizOpen(true)}
+            className="px-3 py-2 bg-[#4A0E17] border border-[#C5A059]/60 text-[#DFBE7B] font-semibold text-[11px] rounded flex items-center gap-1 active:scale-95 cursor-pointer"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Quiz</span>
+          </button>
+
+          <button
+            onClick={() => navigateTo('book')}
+            className="px-4 py-2 bg-[#C5A059] text-[#2C0A0E] font-bold text-xs uppercase tracking-wider rounded shadow-md flex items-center gap-1.5 active:scale-95 cursor-pointer"
+          >
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Book Table</span>
+          </button>
+        </div>
+      </div>
 
       {/* Interactive Aperitivo Finder Quiz Modal */}
       <AperitivoQuizModal

@@ -249,15 +249,21 @@ export const JazzAmbientAudio: React.FC = () => {
                 1950s Soho Jazz Cafe Atmosphere
               </span>
               {isPlaying && (
-                <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#C5A059]/20 border border-[#C5A059]/40 text-[9px] text-[#DFBE7B] font-mono animate-pulse">
-                  <Sparkles className="w-2.5 h-2.5" />
-                  LIVE VINYL
-                </span>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#C5A059]/20 border border-[#C5A059]/40 text-[9px] text-[#DFBE7B] font-mono">
+                  {/* Equalizer Wave Visualizer */}
+                  <div className="flex items-end gap-0.5 h-3 w-4">
+                    <span className="w-0.5 bg-[#C5A059] rounded-full animate-bounce h-full [animation-delay:0.1s]" />
+                    <span className="w-0.5 bg-[#C5A059] rounded-full animate-bounce h-2/3 [animation-delay:0.3s]" />
+                    <span className="w-0.5 bg-[#C5A059] rounded-full animate-bounce h-full [animation-delay:0.2s]" />
+                    <span className="w-0.5 bg-[#C5A059] rounded-full animate-bounce h-1/2 [animation-delay:0.4s]" />
+                  </div>
+                  <span>LIVE VINYL</span>
+                </div>
               )}
             </div>
             <p className="text-[11px] text-[#C5A059] font-mono">
               {isPlaying
-                ? `Playing: ${currentChordName} · Warm Vinyl Crackle`
+                ? `Playing: ${currentChordName} · Warm Analog Vinyl`
                 : 'Subtle ambient jazz chordscapes & analog vinyl feel'}
             </p>
           </div>

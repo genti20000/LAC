@@ -188,25 +188,26 @@ export const DrinksFoodPage: React.FC<DrinksFoodPageProps> = ({
             return (
               <div
                 key={item.id}
-                className="bg-[#1F0609] border border-[#C5A059]/30 rounded-xl p-6 flex flex-col justify-between hover:border-[#C5A059] transition-all duration-300 shadow-xl relative group"
+                className="bg-gradient-to-b from-[#25080B] to-[#180305] border border-[#C5A059]/40 hover:border-[#C5A059] rounded-xl p-6 flex flex-col justify-between transition-all duration-300 shadow-2xl hover:shadow-[0_10px_30px_rgba(197,160,89,0.15)] relative group"
               >
-                {/* Save Heart Button */}
+                {/* Save Heart Button (Minimum 44x44px touch target) */}
                 <button
                   onClick={() => onToggleSavedPairing(item.id)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-[#2C0A0E] border border-[#C5A059]/30 text-[#C5A059] hover:scale-110 transition-transform"
+                  className="absolute top-3.5 right-3.5 min-w-[44px] min-h-[44px] p-2.5 rounded-full bg-[#1F0609]/90 border border-[#C5A059]/50 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all flex items-center justify-center cursor-pointer active:scale-95 shadow-lg"
                   title={isSaved ? 'Remove from My Visit Pairings' : 'Save to My Visit Pairings'}
+                  aria-label="Toggle pairing bookmark"
                 >
-                  <Heart className={`w-4 h-4 ${isSaved ? 'fill-current text-[#C5A059]' : 'text-[#FDFBF7]/50'}`} />
+                  <Heart className={`w-4 h-4 ${isSaved ? 'fill-current text-[#C5A059] hover:text-[#2C0A0E]' : 'text-[#DFBE7B]'}`} />
                 </button>
 
-                <div className="space-y-3 pr-8">
+                <div className="space-y-3 pr-10">
                   {/* Category / Italian Name */}
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono text-[#C5A059] uppercase tracking-wider">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[10px] font-mono text-[#C5A059] uppercase tracking-wider font-semibold">
                       {item.italianName || item.category.replace('-', ' ')}
                     </span>
                     {item.tags?.map((t) => (
-                      <span key={t} className="text-[9px] px-1.5 py-0.5 bg-[#4A0E17] text-[#DFBE7B] rounded font-mono">
+                      <span key={t} className="text-[9px] px-2 py-0.5 bg-[#4A0E17] text-[#DFBE7B] border border-[#C5A059]/30 rounded font-mono font-medium">
                         {t}
                       </span>
                     ))}
@@ -223,33 +224,33 @@ export const DrinksFoodPage: React.FC<DrinksFoodPageProps> = ({
                     {item.price}
                   </span>
 
-                  <p className="text-xs text-[#FDFBF7]/75 leading-relaxed">
+                  <p className="text-xs text-[#E8D5C4] leading-relaxed font-sans">
                     {item.description}
                   </p>
 
                   {item.tastingNotes && (
-                    <div className="p-2.5 bg-[#2C0A0E] rounded border border-[#C5A059]/20 text-[11px] text-[#DFBE7B] font-serif italic">
-                      <span className="font-mono text-[9px] text-[#C5A059] uppercase not-italic block">Sommelier Notes:</span>
+                    <div className="p-3 bg-[#1A0507] rounded-lg border border-[#C5A059]/30 text-[11px] text-[#DFBE7B] font-serif italic shadow-inner">
+                      <span className="font-mono text-[9px] text-[#C5A059] uppercase not-italic block font-bold mb-0.5">Sommelier Notes:</span>
                       "{item.tastingNotes}"
                     </div>
                   )}
                 </div>
 
                 {/* Footer pairing advice */}
-                <div className="pt-4 mt-4 border-t border-[#C5A059]/20 flex items-center justify-between text-xs">
+                <div className="pt-4 mt-4 border-t border-[#C5A059]/25 flex items-center justify-between text-xs">
                   {item.pairingRecommendation ? (
-                    <span className="text-[10px] text-[#C5A059] italic flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-[#C5A059]" />
-                      <span>Pairs with: {item.pairingRecommendation}</span>
+                    <span className="text-[11px] text-[#C5A059] italic flex items-center gap-1 font-serif">
+                      <Sparkles className="w-3.5 h-3.5 text-[#C5A059] shrink-0" />
+                      <span className="line-clamp-1">Pairs with: {item.pairingRecommendation}</span>
                     </span>
                   ) : (
-                    <span className="text-[10px] text-[#FDFBF7]/40">Served at London Aperitivo Club Soho</span>
+                    <span className="text-[10px] text-[#E8D5C4]/60 font-mono">23 Frith St · Soho</span>
                   )}
 
                   <button
                     onClick={() => onToggleSavedPairing(item.id)}
-                    className={`text-[10px] font-mono uppercase underline ${
-                      isSaved ? 'text-[#C5A059] font-bold' : 'text-[#FDFBF7]/60 hover:text-[#C5A059]'
+                    className={`min-h-[36px] px-3 py-1 rounded text-[11px] font-mono uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer ${
+                      isSaved ? 'bg-[#C5A059] text-[#2C0A0E] font-bold shadow' : 'bg-[#2C0A0E] text-[#DFBE7B] hover:bg-[#C5A059] hover:text-[#2C0A0E] border border-[#C5A059]/40'
                     }`}
                   >
                     {isSaved ? 'Saved ✓' : '+ Add Pairing'}
