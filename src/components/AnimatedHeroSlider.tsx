@@ -9,7 +9,6 @@ import milanoLoungeImg from '../assets/images/milano_ny_aperitivo_lounge_1786331
 import milanoPosterImg from '../assets/images/milano_ny_poster_art_1786331429944.jpg';
 import vaultsImg from '../assets/images/lac_hero_subterranean_vaults_1786330130388.jpg';
 import spritzPosterImg from '../assets/images/lac_vintage_poster_spritz_1786330104445.jpg';
-import entranceImg from '../assets/images/lac_soho_frith_street_entrance_1786330142680.jpg';
 import vermouthPosterImg from '../assets/images/lac_vintage_poster_vermouth_1786330118529.jpg';
 import barCounterImg from '../assets/images/lac_bar_counter_soho_1786315443098.jpg';
 import campariPosterImg from '../assets/images/lac_poster_campari_30s_1786330308931.jpg';
@@ -68,13 +67,6 @@ const HERO_SLIDES: HeroSlide[] = [
     title: '1950s Il Spritz Veneziano Vintage Poster',
     type: 'poster',
     subtitle: 'Original mid-century Italian graphic art print',
-  },
-  {
-    id: 'entrance',
-    image: entranceImg,
-    title: '23 Frith Street Soho Entrance',
-    type: 'venue',
-    subtitle: 'Behind the vintage polished brass wall lantern',
   },
   {
     id: 'poster-vermouth',
