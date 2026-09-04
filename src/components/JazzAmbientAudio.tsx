@@ -228,7 +228,7 @@ export const JazzAmbientAudio: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-[#2C0A0E]/90 border border-[#C5A059]/40 rounded-xl p-4 shadow-xl backdrop-blur-md">
+    <div className="bg-[#141418]/95 border border-[#C5A059]/40 rounded-xl p-4 shadow-xl backdrop-blur-md">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         
         {/* Left Info Column */}
@@ -236,8 +236,8 @@ export const JazzAmbientAudio: React.FC = () => {
           <div
             className={`w-10 h-10 rounded-full border border-[#C5A059] flex items-center justify-center shrink-0 transition-all duration-500 ${
               isPlaying
-                ? 'bg-[#4A0E17] text-[#DFBE7B] animate-spin [animation-duration:8s]'
-                : 'bg-[#1F0609] text-[#C5A059]/60'
+                ? 'bg-[#1C1C26] text-[#FFEAA7] animate-spin [animation-duration:8s]'
+                : 'bg-[#0B0B0C] text-[#C5A059]/60'
             }`}
           >
             <Disc className="w-5 h-5" />
@@ -245,11 +245,11 @@ export const JazzAmbientAudio: React.FC = () => {
 
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-serif text-sm font-bold text-[#FDFBF7]">
-                1950s Soho Jazz Cafe Atmosphere
+              <span className="font-display text-sm font-bold text-[#FDFBF7] tracking-wide">
+                23 Frith Street Jazz Atmosphere
               </span>
               {isPlaying && (
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#C5A059]/20 border border-[#C5A059]/40 text-[9px] text-[#DFBE7B] font-mono">
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#C5A059]/20 border border-[#C5A059]/40 text-[9px] text-[#FFEAA7] font-display">
                   {/* Equalizer Wave Visualizer */}
                   <div className="flex items-end gap-0.5 h-3 w-4">
                     <span className="w-0.5 bg-[#C5A059] rounded-full animate-bounce h-full [animation-delay:0.1s]" />
@@ -261,7 +261,7 @@ export const JazzAmbientAudio: React.FC = () => {
                 </div>
               )}
             </div>
-            <p className="text-[11px] text-[#C5A059] font-mono">
+            <p className="text-[11px] text-[#DFBE7B] font-sans">
               {isPlaying
                 ? `Playing: ${currentChordName} · Warm Analog Vinyl`
                 : 'Subtle ambient jazz chordscapes & analog vinyl feel'}
@@ -275,10 +275,10 @@ export const JazzAmbientAudio: React.FC = () => {
           {/* Play/Pause Main Button */}
           <button
             onClick={togglePlay}
-            className={`px-4 py-2 rounded-lg font-serif text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all duration-300 shadow-md ${
+            className={`px-4 py-2 rounded-lg font-display text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all duration-300 shadow-md cursor-pointer ${
               isPlaying
-                ? 'bg-[#4A0E17] border border-[#C5A059] text-[#DFBE7B] hover:bg-[#5E121D]'
-                : 'bg-[#C5A059] text-[#2C0A0E] hover:bg-[#DFBE7B]'
+                ? 'btn-brass-outline'
+                : 'btn-brass'
             }`}
           >
             {isPlaying ? (
@@ -289,7 +289,7 @@ export const JazzAmbientAudio: React.FC = () => {
             ) : (
               <>
                 <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                <span>Play 1950s Ambient</span>
+                <span>Play Soho Ambient</span>
               </>
             )}
           </button>
@@ -299,7 +299,7 @@ export const JazzAmbientAudio: React.FC = () => {
             <div className="flex items-center gap-2 border-l border-[#C5A059]/30 pl-4">
               <button
                 onClick={toggleMute}
-                className="text-[#C5A059] hover:text-[#DFBE7B] transition-colors"
+                className="text-[#C5A059] hover:text-[#DFBE7B] transition-colors cursor-pointer"
                 title={isMuted ? 'Unmute' : 'Mute'}
               >
                 {isMuted || volume === 0 ? (
@@ -316,7 +316,7 @@ export const JazzAmbientAudio: React.FC = () => {
                 step="0.02"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
-                className="w-20 accent-[#C5A059] cursor-pointer bg-[#1F0609] h-1.5 rounded-lg"
+                className="w-20 accent-[#C5A059] cursor-pointer bg-[#0B0B0C] h-1.5 rounded-lg"
               />
             </div>
           )}

@@ -128,24 +128,24 @@ export const AnimatedPosterSlider: React.FC = () => {
   const activePoster = VINTAGE_POSTERS[currentIndex];
 
   return (
-    <section className="bg-[#1F0609] border-y border-[#C5A059]/30 py-16 sm:py-24 relative overflow-hidden">
+    <section className="bg-[#0e0e11] border-y border-[#C5A059]/30 py-16 sm:py-24 relative overflow-hidden">
       {/* Background Subtle Accent Glow */}
-      <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#4A0E17]/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#C5A059]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#C5A059]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 bg-[#DFBE7B]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         
         {/* Section Header */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2C0A0E] border border-[#C5A059]/40 text-[#C5A059] text-[10px] font-mono uppercase tracking-[0.25em]">
-            <Sparkles className="w-3 h-3 text-[#DFBE7B]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#181820] border border-[#C5A059]/40 text-[#DFBE7B] text-[10px] font-display uppercase tracking-[0.25em]">
+            <Sparkles className="w-3 h-3 text-[#C5A059]" />
             <span>SUBTERRANEAN ART ARCHIVE</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#FDFBF7]">
+          <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#FDFBF7] tracking-wide">
             Vintage Italian Poster Heritage
           </h2>
-          <p className="text-xs sm:text-sm text-[#FDFBF7]/75 leading-relaxed">
-            Our Soho brick vaults house an archive of original 1920s–1950s Art Deco and Futurist Italian aperitivo advertising artwork. Slide through the collection below.
+          <p className="text-xs sm:text-sm text-[#DFBE7B]/80 leading-relaxed font-sans">
+            Our 23 Frith Street cellars house an archive of original 1920s–1950s Art Deco and Futurist Italian aperitivo advertising artwork. Slide through the collection below.
           </p>
         </div>
 
@@ -155,20 +155,20 @@ export const AnimatedPosterSlider: React.FC = () => {
             <button
               key={poster.id}
               onClick={() => setCurrentIndex(idx)}
-              className={`px-4 py-2 rounded-lg text-xs font-serif font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer border ${
+              className={`px-4 py-2 rounded-lg text-xs font-display font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer border ${
                 idx === currentIndex
-                  ? 'bg-[#C5A059] text-[#2C0A0E] border-[#C5A059] shadow-lg scale-105'
-                  : 'bg-[#2C0A0E]/80 text-[#FDFBF7]/70 border-[#C5A059]/30 hover:text-[#DFBE7B] hover:border-[#C5A059]/60'
+                  ? 'bg-[#C5A059] text-[#0B0B0C] border-[#C5A059] shadow-lg scale-105 font-bold'
+                  : 'bg-[#181820]/90 text-[#FDFBF7]/70 border-[#C5A059]/30 hover:text-[#DFBE7B] hover:border-[#C5A059]/60'
               }`}
             >
-              <span className="font-mono text-[10px] opacity-80">{poster.year}</span>
+              <span className="font-display text-[10px] opacity-80">{poster.year}</span>
               <span>{poster.title}</span>
             </button>
           ))}
         </div>
 
         {/* Main Animated Poster Slide Display */}
-        <div className="bg-[#2C0A0E]/90 border border-[#C5A059]/40 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+        <div className="bg-[#121215]/95 border border-[#C5A059]/40 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Column: Interactive Animated Image Box */}
@@ -180,7 +180,7 @@ export const AnimatedPosterSlider: React.FC = () => {
                   animate={{ opacity: 1, x: 0, rotate: 0 }}
                   exit={{ opacity: 0, x: 30, rotate: 1 }}
                   transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
-                  className="relative rounded-xl overflow-hidden border-2 border-[#C5A059]/50 shadow-2xl bg-[#1F0609] aspect-[3/4]"
+                  className="relative rounded-xl overflow-hidden border-2 border-[#C5A059]/50 shadow-2xl bg-[#0B0B0C] aspect-[3/4]"
                 >
                   <img
                     src={activePoster.image}
@@ -190,22 +190,22 @@ export const AnimatedPosterSlider: React.FC = () => {
                   />
 
                   {/* Overlay Gradient & Zoom Button */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1F0609] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-transparent to-transparent opacity-80" />
                   
                   <button
                     onClick={() => setZoomModalImage(activePoster)}
-                    className="absolute top-4 right-4 p-2.5 rounded-full bg-[#1F0609]/80 border border-[#C5A059] text-[#DFBE7B] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all shadow-xl cursor-pointer"
+                    className="absolute top-4 right-4 p-2.5 rounded-full bg-[#121215]/80 border border-[#C5A059] text-[#DFBE7B] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all shadow-xl cursor-pointer"
                     title="View Full High-Res Artwork"
                   >
                     <ZoomIn className="w-4 h-4" />
                   </button>
 
                   {/* Year Tag Badge */}
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-serif text-[#DFBE7B]">
-                    <span className="px-3 py-1 bg-[#1F0609]/90 border border-[#C5A059]/40 rounded-md font-mono font-bold">
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-display text-[#DFBE7B]">
+                    <span className="px-3 py-1 bg-[#121215]/90 border border-[#C5A059]/40 rounded-md font-display font-bold">
                       ERA: {activePoster.year}
                     </span>
-                    <span className="text-[10px] text-[#FDFBF7]/80 font-sans italic bg-[#1F0609]/80 px-2 py-1 rounded">
+                    <span className="text-[10px] text-[#FDFBF7]/80 font-sans italic bg-[#121215]/80 px-2 py-1 rounded">
                       {activePoster.style}
                     </span>
                   </div>
@@ -226,34 +226,34 @@ export const AnimatedPosterSlider: React.FC = () => {
                   className="space-y-5"
                 >
                   <div>
-                    <span className="text-xs font-mono text-[#C5A059] uppercase tracking-widest block mb-1">
+                    <span className="text-xs font-display text-[#DFBE7B] uppercase tracking-widest block mb-1">
                       {activePoster.locationInClub}
                     </span>
-                    <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#FDFBF7]">
+                    <h3 className="font-display text-3xl sm:text-4xl font-bold text-[#FDFBF7] tracking-wide">
                       {activePoster.title}
                     </h3>
-                    <p className="text-sm font-serif italic text-[#DFBE7B] mt-1">
+                    <p className="text-sm font-display italic text-[#DFBE7B] mt-1">
                       {activePoster.tagline}
                     </p>
                   </div>
 
-                  <p className="text-sm sm:text-base text-[#FDFBF7]/85 leading-relaxed">
+                  <p className="text-sm sm:text-base text-[#FDFBF7]/85 leading-relaxed font-sans">
                     {activePoster.description}
                   </p>
 
                   {/* Historical Quote Box */}
-                  <div className="p-4 rounded-xl bg-[#1F0609]/80 border-l-4 border-[#C5A059] space-y-1">
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#C5A059]">
-                      <Quote className="w-3.5 h-3.5" />
+                  <div className="p-4 rounded-xl bg-[#181820] border-l-4 border-[#C5A059] space-y-1">
+                    <div className="flex items-center gap-2 text-xs font-display text-[#DFBE7B]">
+                      <Quote className="w-3.5 h-3.5 text-[#C5A059]" />
                       <span>HISTORICAL APERITIVO MOTTO</span>
                     </div>
-                    <p className="font-serif italic text-sm text-[#FDFBF7]/90">
+                    <p className="font-display italic text-sm text-[#FDFBF7]/90">
                       {activePoster.quote}
                     </p>
                   </div>
 
                   {/* Menu Pairing Box */}
-                  <div className="flex items-center gap-3 p-3 rounded-lg bg-[#4A0E17]/40 border border-[#C5A059]/30 text-xs text-[#FDFBF7]">
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-[#181820] border border-[#C5A059]/30 text-xs text-[#FDFBF7]">
                     <ShieldCheck className="w-4 h-4 text-[#C5A059] shrink-0" />
                     <span className="font-sans">{activePoster.pairingNote}</span>
                   </div>
@@ -263,14 +263,14 @@ export const AnimatedPosterSlider: React.FC = () => {
 
               {/* Navigation Bar for Posters */}
               <div className="pt-4 border-t border-[#C5A059]/30 flex items-center justify-between">
-                <div className="text-xs font-mono text-[#C5A059]">
+                <div className="text-xs font-display text-[#DFBE7B]">
                   Poster {currentIndex + 1} of {VINTAGE_POSTERS.length}
                 </div>
 
                 <div className="flex items-center gap-3">
                   <button
                     onClick={handlePrev}
-                    className="min-w-[44px] min-h-[44px] p-3 rounded-lg bg-[#1F0609] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer flex items-center justify-center active:scale-95"
+                    className="min-w-[44px] min-h-[44px] p-3 rounded-lg bg-[#181820] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all cursor-pointer flex items-center justify-center active:scale-95"
                     aria-label="Previous Poster"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -278,7 +278,7 @@ export const AnimatedPosterSlider: React.FC = () => {
 
                   <button
                     onClick={handleNext}
-                    className="min-w-[44px] min-h-[44px] p-3 rounded-lg bg-[#1F0609] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer flex items-center justify-center active:scale-95"
+                    className="min-w-[44px] min-h-[44px] p-3 rounded-lg bg-[#181820] border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all cursor-pointer flex items-center justify-center active:scale-95"
                     aria-label="Next Poster"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -300,21 +300,21 @@ export const AnimatedPosterSlider: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#1F0609]/98 backdrop-blur-2xl flex flex-col items-center justify-between p-4 sm:p-8"
+            className="fixed inset-0 z-50 bg-[#0B0B0C]/98 backdrop-blur-2xl flex flex-col items-center justify-between p-4 sm:p-8"
             onClick={() => setZoomModalImage(null)}
           >
             {/* Top Close Bar */}
             <div className="w-full flex items-center justify-between text-[#DFBE7B] max-w-6xl z-10" onClick={(e) => e.stopPropagation()}>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#C5A059]" />
-                <span className="font-serif text-sm sm:text-base font-bold text-[#FDFBF7]">
+                <span className="font-display text-sm sm:text-base font-bold text-[#FDFBF7]">
                   {zoomModalImage.title} ({zoomModalImage.year})
                 </span>
               </div>
 
               <button
                 onClick={() => setZoomModalImage(null)}
-                className="px-4 py-2 rounded-full bg-[#2C0A0E] border border-[#C5A059] text-[#DFBE7B] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer flex items-center gap-2 text-xs font-mono"
+                className="px-4 py-2 rounded-full bg-[#181820] border border-[#C5A059] text-[#DFBE7B] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all cursor-pointer flex items-center gap-2 text-xs font-display"
               >
                 <span>CLOSE FULLSCREEN</span>
                 <X className="w-4 h-4" />
@@ -342,7 +342,7 @@ export const AnimatedPosterSlider: React.FC = () => {
                   setCurrentIndex(newIdx);
                   setZoomModalImage(VINTAGE_POSTERS[newIdx]);
                 }}
-                className="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#1F0609]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer shadow-2xl"
+                className="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#181820]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all cursor-pointer shadow-2xl"
                 title="Previous Poster"
               >
                 <ChevronLeft className="w-6 h-6" />
@@ -354,7 +354,7 @@ export const AnimatedPosterSlider: React.FC = () => {
                   setCurrentIndex(newIdx);
                   setZoomModalImage(VINTAGE_POSTERS[newIdx]);
                 }}
-                className="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#1F0609]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all cursor-pointer shadow-2xl"
+                className="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#181820]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all cursor-pointer shadow-2xl"
                 title="Next Poster"
               >
                 <ChevronRight className="w-6 h-6" />
@@ -364,10 +364,10 @@ export const AnimatedPosterSlider: React.FC = () => {
 
             {/* Bottom Details Bar */}
             <div className="w-full max-w-3xl text-center space-y-1 z-10" onClick={(e) => e.stopPropagation()}>
-              <span className="text-xs font-mono text-[#C5A059] uppercase tracking-widest block">
+              <span className="text-xs font-display text-[#DFBE7B] uppercase tracking-widest block">
                 {zoomModalImage.style} · {zoomModalImage.locationInClub}
               </span>
-              <p className="text-xs sm:text-sm text-[#FDFBF7]/80 italic max-w-xl mx-auto">
+              <p className="text-xs sm:text-sm text-[#FDFBF7]/80 italic max-w-xl mx-auto font-sans">
                 {zoomModalImage.description}
               </p>
             </div>

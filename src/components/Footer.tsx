@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer className="bg-[#1F0609] border-t border-[#C5A059]/30 text-[#FDFBF7] pt-12 pb-12">
+    <footer className="bg-[#0B0B0C] border-t border-[#C5A059]/30 text-[#FDFBF7] pt-12 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Ambient 1950s Jazz Cafe Audio Soundscape Bar */}
@@ -34,13 +34,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Brand & Identity */}
           <div className="space-y-4">
-            <BrandLogo size="md" />
-            <p className="text-xs text-[#FDFBF7]/70 leading-relaxed pt-2">
-              An intimate subterranean sanctuary on Frith Street in Soho celebrating the timeless ritual of the Italian Aperitivo, fine wines, and artisanal cicchetti in candlelit brick vaults.
+            <BrandLogo size="md" showSubtitle={true} showIcon={true} />
+            <p className="text-xs text-[#DFBE7B]/80 leading-relaxed pt-2 font-sans">
+              An intimate subterranean sanctuary behind the black awning at 23 Frith Street in Soho celebrating bespoke cocktails, fine wines, artisanal cicchetti, and late-night vinyl soundscapes in candlelit brick vaults.
             </p>
             <div className="pt-2 flex items-center gap-3 text-sm text-[#C5A059]">
-              <a href={`https://instagram.com`} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5 text-xs">
-                <Instagram className="w-4 h-4" />
+              <a href={`https://instagram.com`} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5 text-xs font-display">
+                <Instagram className="w-4 h-4 text-[#C5A059]" />
                 <span>{VENUE_INFO.instagram}</span>
               </a>
             </div>
@@ -48,40 +48,40 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Quick Navigation */}
           <div>
-            <h4 className="font-serif text-lg font-bold text-[#C5A059] tracking-wider uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
+            <h4 className="font-display text-base font-bold text-[#DFBE7B] tracking-widest uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
               Guest Pages
             </h4>
             <ul className="space-y-3 text-xs text-[#E8D5C4]">
               <li>
-                <button onClick={() => onNavigate('home')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Home & Atmosphere</button>
+                <button onClick={() => onNavigate('home')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer font-sans">Home & Atmosphere</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('drinks-food')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Drinks, Spritz & Food Menu</button>
+                <button onClick={() => onNavigate('drinks-food')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer font-sans">Drinks, Spritz & Food Menu</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('venue')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">The Soho Venue</button>
+                <button onClick={() => onNavigate('venue')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer font-sans">The 23 Soho Venue</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('private-hire')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Private Hire & Vault Buyouts</button>
+                <button onClick={() => onNavigate('private-hire')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer font-sans">Private Hire & Vault Buyouts</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('whats-on')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">What’s On & Vinyl Sessions</button>
+                <button onClick={() => onNavigate('whats-on')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer font-sans">What’s On & Vinyl Sessions</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('visit')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer">Visit, Hours & Directions</button>
+                <button onClick={() => onNavigate('visit')} className="hover:text-[#C5A059] transition-colors py-1 text-left cursor-pointer font-sans">Visit, Hours & Directions</button>
               </li>
               <li>
-                <button onClick={() => onNavigate('book')} className="text-[#C5A059] font-bold hover:underline py-1 text-left cursor-pointer">Book A Table Online →</button>
+                <button onClick={() => onNavigate('book')} className="text-[#DFBE7B] font-display font-bold hover:underline py-1 text-left cursor-pointer tracking-wider">Book A Table Online →</button>
               </li>
             </ul>
           </div>
 
           {/* Location & Opening Hours */}
           <div>
-            <h4 className="font-serif text-lg font-bold text-[#C5A059] tracking-wider uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
+            <h4 className="font-display text-base font-bold text-[#DFBE7B] tracking-widest uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
               Visit & Hours
             </h4>
-            <div className="space-y-3 text-xs text-[#E8D5C4]">
+            <div className="space-y-3 text-xs text-[#E8D5C4] font-sans">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
                 <span>{VENUE_INFO.address}</span>
@@ -96,26 +96,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
 
               <div className="pt-2 border-t border-[#C5A059]/20 space-y-1">
-                <div className="flex items-center gap-2 text-[#C5A059] font-semibold">
-                  <Clock className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-2 text-[#DFBE7B] font-display font-semibold text-xs tracking-wider">
+                  <Clock className="w-3.5 h-3.5 text-[#C5A059]" />
                   <span>Aperitivo Golden Hour</span>
                 </div>
                 <p className="text-[11px] text-[#FDFBF7]">Tuesday – Saturday: 16:30 – 18:30</p>
-                <p className="text-[10px] text-[#E8D5C4]/70">Late Lounge Open Tue–Thu 23:30 / Fri–Sat 00:30</p>
+                <p className="text-[10px] text-[#E8D5C4]/70">Late Lounge Open Tue–Thu until 23:30 / Fri–Sat until Late</p>
               </div>
             </div>
           </div>
 
           {/* Newsletter Signup */}
           <div>
-            <h4 className="font-serif text-lg font-bold text-[#C5A059] tracking-wider uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
-              The Aperitivo Dispatch
+            <h4 className="font-display text-base font-bold text-[#DFBE7B] tracking-widest uppercase mb-4 border-b border-[#C5A059]/20 pb-2">
+              The 23 Soho Dispatch
             </h4>
-            <p className="text-xs text-[#FDFBF7]/70 mb-4 leading-relaxed">
-              Subscribe for invitations to secret vault tastings, seasonal Vermouth releases, and early access to vinyl night reservations.
+            <p className="text-xs text-[#DFBE7B]/80 mb-4 leading-relaxed font-sans">
+              Subscribe for invitations to secret vault tastings, seasonal releases, and early access to late-night vinyl bookings.
             </p>
             {emailSubmitted ? (
-              <div className="p-3 bg-[#4A0E17] border border-[#C5A059]/40 text-[#DFBE7B] text-xs rounded text-center">
+              <div className="p-3 bg-[#1C1C22] border border-[#C5A059]/40 text-[#DFBE7B] text-xs rounded text-center font-display">
                 Grazie! You’ve been added to the guest register.
               </div>
             ) : (
@@ -127,11 +127,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     placeholder="Enter your email..."
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-[#2C0A0E] border border-[#C5A059]/40 rounded text-xs text-[#FDFBF7] placeholder-[#FDFBF7]/40 focus:outline-none focus:border-[#C5A059]"
+                    className="w-full px-3 py-2.5 bg-[#141418] border border-[#C5A059]/40 rounded text-xs text-[#FDFBF7] placeholder-[#FDFBF7]/40 focus:outline-none focus:border-[#C5A059]"
                   />
                   <button
                     type="submit"
-                    className="absolute right-1 top-1 bottom-1 px-3 bg-[#C5A059] hover:bg-[#DFBE7B] text-[#2C0A0E] font-bold text-xs rounded flex items-center justify-center transition-colors"
+                    className="btn-brass absolute right-1 top-1 bottom-1 px-3 text-xs rounded flex items-center justify-center cursor-pointer"
+                    aria-label="Subscribe"
                   >
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
@@ -143,8 +144,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Bottom copyright line */}
-        <div className="pt-8 border-t border-[#C5A059]/20 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FDFBF7]/50 gap-4">
-          <p>© {new Date().getFullYear()} London Aperitivo Club Soho. All rights reserved.</p>
+        <div className="pt-8 border-t border-[#C5A059]/20 flex flex-col sm:flex-row items-center justify-between text-xs text-[#FDFBF7]/50 gap-4 font-sans">
+          <p>© {new Date().getFullYear()} 23 SOHO. All rights reserved.</p>
           <div className="flex items-center gap-6 text-[11px]">
             <span>23 Frith Street, London W1D 4RR</span>
             <span>·</span>

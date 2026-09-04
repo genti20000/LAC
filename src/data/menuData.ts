@@ -4,7 +4,7 @@ export const MENU_ITEMS: MenuItem[] = [
   // APERITIVI & SPRITZES
   {
     id: 'lac-signature-spritz',
-    name: 'The Soho Venetian Spritz',
+    name: 'The 23 SOHO Signature Spritz',
     italianName: 'Spritz Sohosino',
     category: 'aperitivi',
     price: '£12.50',
@@ -149,7 +149,7 @@ export const MENU_ITEMS: MenuItem[] = [
   // CHARCUTERIE & CHEESE
   {
     id: 'lac-gran-tagliere',
-    name: 'The Soho Aperitivo Board',
+    name: 'The 23 SOHO Grand Board',
     category: 'charcuterie',
     price: '£26.00',
     description: 'Prosciutto di Parma 24-month, Finocchiona salami, Bresaola, Ubriaco al Raboso cheese, Gorgonzola Dolce, pickled chillies, gnocco fritto & chutney.',

@@ -52,7 +52,7 @@ export const EVENTS_DATA: EventItem[] = [
     category: 'Tasting',
     date: 'Bi-Weekly Wednesdays',
     time: '18:00 – 20:00',
-    description: 'An exclusive candlelit session in London Aperitivo Club’s private wine vault testing limited batch cask-aged Negronis and volcanic Italian reds.',
+    description: 'An exclusive candlelit session in 23 SOHO’s private wine vault testing limited batch cask-aged Negronis and volcanic Italian reds.',
     highlight: 'Intimate 12-guest capacity in private brick vaults',
     priceInfo: '£55.00 per person',
   }

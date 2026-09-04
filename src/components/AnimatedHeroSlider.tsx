@@ -16,6 +16,7 @@ import boothImg from '../assets/images/lac_subterranean_booth_1786315472218.jpg'
 import cicchettiPosterImg from '../assets/images/lac_poster_cicchetti_40s_1786330322410.jpg';
 import pourImg from '../assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
 import vinylImg from '../assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
+import sohoFacadeImg from '../assets/images/soho_23_facade_night_1788541352970.jpg';
 
 interface HeroSlide {
   id: string;
@@ -26,6 +27,13 @@ interface HeroSlide {
 }
 
 const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: 'soho-23-facade',
+    image: sohoFacadeImg,
+    title: '23 SOHO · 23 Frith Street, London',
+    type: 'venue',
+    subtitle: 'Cocktails · Music · Late | Iconic curved awning & late-night subterranean haven',
+  },
   {
     id: 'burlesque-poster',
     image: burlesquePosterImg,
@@ -38,7 +46,7 @@ const HERO_SLIDES: HeroSlide[] = [
     image: burlesquePerfImg,
     title: 'Live Music & Burlesque Nights · Subterranean Stage',
     type: 'venue',
-    subtitle: 'Glamorous live jazz vocals, vintage burlesque performances, and midnight aperitivo',
+    subtitle: 'Glamorous live jazz vocals, vintage burlesque performances, and midnight cocktails',
   },
   {
     id: 'milano-ny-lounge',
@@ -57,9 +65,9 @@ const HERO_SLIDES: HeroSlide[] = [
   {
     id: 'vaults',
     image: vaultsImg,
-    title: 'London Aperitivo Club · Subterranean Soho Vaults',
+    title: '23 SOHO · Subterranean Soho Vaults',
     type: 'venue',
-    subtitle: 'Candlelit brick vaults and oxblood velvet booths on Frith Street',
+    subtitle: 'Candlelit brick vaults and plush velvet seating beneath Frith Street',
   },
   {
     id: 'poster-spritz',
@@ -191,17 +199,17 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
       {/* Removed bottom shade overlay to keep image completely unshaded */}
 
       {/* Floating Hero Info Overlay Card for instant conversion (Desktop & Tablet) */}
-      <div className="hidden sm:flex absolute bottom-6 left-8 right-8 z-20 max-w-4xl mx-auto bg-[#1F0609]/90 border border-[#C5A059]/40 backdrop-blur-md rounded-xl p-5 shadow-2xl items-center justify-between gap-6">
+      <div className="hidden sm:flex absolute bottom-6 left-8 right-8 z-20 max-w-4xl mx-auto bg-[#121215]/95 border border-[#C5A059]/40 backdrop-blur-md rounded-xl p-5 shadow-2xl items-center justify-between gap-6">
         <div className="space-y-1 text-left">
-          <div className="flex flex-wrap items-center justify-start gap-2 text-[11px] text-[#C5A059] font-mono">
-            <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> 23 Frith St, Soho</span>
+          <div className="flex flex-wrap items-center justify-start gap-2 text-[11px] text-[#DFBE7B] font-display uppercase tracking-wider">
+            <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-[#C5A059]" /> 23 Frith St, Soho</span>
             <span>·</span>
-            <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Tue–Sat: 16:30–23:30</span>
+            <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-[#C5A059]" /> Tue–Sat: 16:30–Late</span>
           </div>
-          <h1 className="font-serif text-base lg:text-lg font-bold text-[#FDFBF7] line-clamp-1">
+          <h1 className="font-display text-base lg:text-lg font-bold text-[#FDFBF7] tracking-wide line-clamp-1">
             {activeSlide.title}
           </h1>
-          <p className="text-xs text-[#E8D5C4] line-clamp-1">
+          <p className="text-xs text-[#DFBE7B]/80 font-sans line-clamp-1">
             {activeSlide.subtitle}
           </p>
         </div>
@@ -209,7 +217,7 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
         <div className="flex items-center gap-2.5 shrink-0">
           <button
             onClick={() => onNavigate('book')}
-            className="px-4 py-2 bg-[#C5A059] hover:bg-[#DFBE7B] text-[#2C0A0E] font-bold text-xs uppercase tracking-wider rounded transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+            className="btn-brass px-4 py-2 rounded text-xs flex items-center gap-1.5 cursor-pointer active:scale-95"
           >
             <Calendar className="w-3.5 h-3.5" />
             <span>Book Table</span>
@@ -217,20 +225,18 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
 
           <button
             onClick={onOpenQuiz}
-            className="px-3.5 py-2 bg-[#4A0E17] hover:bg-[#5E121D] border border-[#C5A059]/60 text-[#DFBE7B] font-semibold text-xs rounded transition-all flex items-center gap-1.5 cursor-pointer"
+            className="btn-brass-outline px-3.5 py-2 rounded font-medium text-xs flex items-center gap-1.5 cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
             <span>Pairing Quiz</span>
           </button>
         </div>
       </div>
 
-
-
       {/* Slider Left Arrow (Minimum 44x44px touch target) */}
       <button
         onClick={handlePrev}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 min-w-[44px] min-h-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1F0609]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer active:scale-95"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 min-w-[44px] min-h-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#121215]/90 border border-[#C5A059] text-[#DFBE7B] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer active:scale-95"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6" />
@@ -239,7 +245,7 @@ export const AnimatedHeroSlider: React.FC<AnimatedHeroSliderProps> = ({
       {/* Slider Right Arrow (Minimum 44x44px touch target) */}
       <button
         onClick={handleNext}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 min-w-[44px] min-h-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1F0609]/90 border border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#2C0A0E] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer active:scale-95"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 min-w-[44px] min-h-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#121215]/90 border border-[#C5A059] text-[#DFBE7B] hover:bg-[#C5A059] hover:text-[#0B0B0C] transition-all flex items-center justify-center shadow-2xl backdrop-blur-md cursor-pointer active:scale-95"
         aria-label="Next slide"
       >
         <ChevronRight className="w-6 h-6" />

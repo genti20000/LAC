@@ -59,7 +59,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#2C0A0E] text-[#FDFBF7] font-sans selection:bg-[#C5A059] selection:text-[#2C0A0E]">
+    <div className="min-h-screen flex flex-col bg-[#0B0B0C] text-[#FDFBF7] font-sans selection:bg-[#C5A059] selection:text-[#0B0B0C]">
       
       {/* Header Bar */}
       <Header
@@ -115,27 +115,27 @@ export default function App() {
       <Footer onNavigate={navigateTo} />
 
       {/* Sticky Mobile Bottom CTA Bar for Instant Conversions */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#1A0507]/95 backdrop-blur-lg border-t border-[#C5A059]/40 p-2.5 px-4 flex items-center justify-between gap-3 shadow-[0_-10px_25px_rgba(0,0,0,0.8)]">
-        <div className="flex items-center gap-2 text-xs text-[#E8D5C4]">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0E0E12]/95 backdrop-blur-lg border-t border-[#C5A059]/40 p-2.5 px-4 flex items-center justify-between gap-3 shadow-[0_-10px_25px_rgba(0,0,0,0.9)]">
+        <div className="flex items-center gap-2 text-xs text-[#DFBE7B]">
           <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse"></span>
-          <span className="font-serif font-bold text-[#FDFBF7] tracking-wide">London Aperitivo Club</span>
+          <span className="font-display font-bold text-[#FDFBF7] tracking-widest uppercase">23 SOHO</span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => setQuizOpen(true)}
-            className="px-3 py-2 bg-[#4A0E17] border border-[#C5A059]/60 text-[#DFBE7B] font-semibold text-[11px] rounded flex items-center gap-1 active:scale-95 cursor-pointer"
+            className="btn-brass-outline px-3 py-1.5 rounded flex items-center gap-1 active:scale-95 cursor-pointer text-[11px]"
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Sparkles className="w-3 h-3 text-[#C5A059]" />
             <span>Quiz</span>
           </button>
 
           <button
             onClick={() => navigateTo('book')}
-            className="px-4 py-2 bg-[#C5A059] text-[#2C0A0E] font-bold text-xs uppercase tracking-wider rounded shadow-md flex items-center gap-1.5 active:scale-95 cursor-pointer"
+            className="btn-brass px-4 py-2 text-xs rounded shadow-md flex items-center gap-1.5 active:scale-95 cursor-pointer"
           >
             <Calendar className="w-3.5 h-3.5" />
-            <span>Book Table</span>
+            <span>Book</span>
           </button>
         </div>
       </div>
