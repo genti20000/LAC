@@ -36,13 +36,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, savedPa
     return (
       <header className="w-full bg-[#050507] border-b border-[#1A0408] select-none z-40 relative">
         <div className="w-full px-5 sm:px-10 lg:px-14 h-16 sm:h-20 flex items-center justify-between">
-          {/* Left: ΛMICΛ / — SOHO — */}
+          {/* Left: AMICA / — SOHO — */}
           <div
             onClick={() => handleNavClick('coming-soon')}
             className="flex flex-col items-start cursor-pointer group"
           >
-            <span className="font-['Cinzel',serif] text-base sm:text-xl md:text-2xl tracking-[0.26em] sm:tracking-[0.3em] text-[#E8CCA0] uppercase font-light leading-none group-hover:text-[#FFEAA7] transition-colors">
-              ΛMICΛ
+            <span className="font-['Cinzel',serif] text-base sm:text-xl md:text-2xl tracking-[0.24em] sm:tracking-[0.28em] text-[#E8CCA0] uppercase font-light leading-none group-hover:text-[#FFEAA7] transition-colors">
+              AMICA
             </span>
             <div className="flex items-center gap-1.5 mt-1 text-[#DFBE7B]">
               <span className="w-3 sm:w-4 h-[1px] bg-[#DFBE7B]/80" />
