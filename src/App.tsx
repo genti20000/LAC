@@ -60,7 +60,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-maroon-deep text-[#FDFBF7] font-sans selection:bg-[#C5A059] selection:text-[#150306] overflow-x-hidden">
+    <div className={`min-h-screen flex flex-col ${currentPage === 'coming-soon' ? 'bg-[#000000]' : 'bg-maroon-deep'} text-[#FDFBF7] font-sans selection:bg-[#C5A059] selection:text-[#150306] overflow-x-hidden`}>
       
       {/* Header Bar */}
       <Header
@@ -70,7 +70,7 @@ export default function App() {
       />
 
       {/* Main Page Content */}
-      <main className={`flex-1 ${currentPage === 'coming-soon' ? '' : 'pb-20 md:pb-0'}`}>
+      <main className={`flex-1 ${currentPage === 'coming-soon' ? 'bg-[#000000]' : 'pb-20 md:pb-0'}`}>
         {currentPage === 'coming-soon' && (
           <ComingSoonPage onNavigate={navigateTo} />
         )}

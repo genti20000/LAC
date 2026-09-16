@@ -30,12 +30,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, savedPa
   };
 
   // If on Coming Soon page, render the exact minimal header from the design:
-  // Left: ΛMICΛ / — SOHO —, Right: HOME (with underline) | COMING SOON
+  // Left: Coupe icon + AMICA / — SOHO —, Right: HOME (with underline) | COMING SOON
   // No Book Now button, no hamburger menu, no ticker.
   if (currentPage === 'coming-soon') {
     return (
-      <header className="w-full bg-[#050507] border-b border-[#1A0408] select-none z-40 relative">
-        <div className="w-full px-5 sm:px-10 lg:px-14 h-16 sm:h-20 flex items-center justify-between">
+      <header className="w-full bg-[#000000] border-b border-[#140206] select-none z-40 relative">
+        <div className="w-full max-w-[560px] mx-auto px-5 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
           {/* Left: AMICA / — SOHO — */}
           <div
             onClick={() => handleNavClick('coming-soon')}

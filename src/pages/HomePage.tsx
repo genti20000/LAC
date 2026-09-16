@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
 import { Mail, Phone, Instagram, MapPin, X, ChevronRight, ExternalLink } from 'lucide-react';
-
-// Generated high-fidelity photo assets for AMICA SOHO
-import AMICA_ENTRANCE_IMAGE from '../assets/images/amica_hero_entrance_1789519211124.jpg';
-import AMICA_BAR_IMAGE from '../assets/images/amica_crimson_bar_1789519221390.jpg';
-import AMICA_BOOTH_IMAGE from '../assets/images/amica_vault_booth_1789519232696.jpg';
-import AMICA_LOUNGE_IMAGE from '../assets/images/amica_neon_lounge_1789519242449.jpg';
-import VERMOUTH_POUR_IMAGE from '../assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
-import VINYL_IMAGE from '../assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
-import WINE_VAULT_IMAGE from '../assets/images/wine_vault_ambiance_1786202528861.jpg';
-import BANQUETTE_IMAGE from '../assets/images/lac_subterranean_booth_1786315472218.jpg';
-import LOUNGE_IMAGE from '../assets/images/milano_ny_aperitivo_lounge_1786331418627.jpg';
+import {
+  amicaEntranceDome,
+  amicaFacadeNight,
+  amicaCrimsonBar,
+  amicaVaultBooth,
+  amicaArchBooth,
+  amicaOxbloodLounge,
+  amicaNeonLounge,
+  amicaBarDisplay,
+  amicaMirrorSconces,
+  amicaPowderRoom,
+} from '../assets/images/photos';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
@@ -21,37 +22,57 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) => {
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
 
-  // Gallery items matching the 6-thumbnail strip in the screenshot
+  // Gallery items featuring the 10 authentic AMICA SOHO photographs
   const galleryItems = [
     {
-      src: AMICA_BAR_IMAGE,
+      src: amicaCrimsonBar,
       alt: 'The Crimson Speakeasy Bar',
-      caption: 'Back-lit crimson spirits gallery with Italian vermouths & vintage amari',
+      caption: 'Subterranean walnut counter with crimson illuminated backbar & cocktail trolley',
     },
     {
-      src: AMICA_BOOTH_IMAGE,
-      alt: 'The Vaulted Amber Booths',
-      caption: 'Curved illuminated brick niches designed for unhurried conversations',
+      src: amicaVaultBooth,
+      alt: 'Barrel-Vaulted Dining Arch',
+      caption: 'Warm gold cove lighting, tufted leather banquettes & brass sunburst medallion',
     },
     {
-      src: LOUNGE_IMAGE,
-      alt: 'The Subterranean Cocktail Lounge',
-      caption: 'Low-slung leather armchairs beneath vintage Italian art frames',
+      src: amicaArchBooth,
+      alt: 'The Private Scalloped Alcove',
+      caption: 'Burgundy Art Deco fan wallpaper with ambient uplighting & chilled champagne',
     },
     {
-      src: WINE_VAULT_IMAGE,
-      alt: 'The Reserve Wine & Amaro Cellar',
-      caption: 'Hand-selected rare volcanic Italian reds and cask-aged Negroni vessels',
+      src: amicaOxbloodLounge,
+      alt: 'The Oxblood Cocktail Lounge',
+      caption: 'Arched golden wine displays, cognac leather Chesterfield & mid-century armchairs',
     },
     {
-      src: AMICA_ENTRANCE_IMAGE,
-      alt: 'The 23 Frith Street Awning Facade',
-      caption: 'The discrete burgundy curved awning and fluted amber doors in Soho',
+      src: amicaNeonLounge,
+      alt: 'Soho After Dark Neon Wall',
+      caption: 'Curated red typography panels: Cocktails & Mischief Till Late',
     },
     {
-      src: BANQUETTE_IMAGE,
-      alt: 'Intimate Corner Banquettes',
-      caption: 'Plush oxblood leather banquettes tucked into subterranean brick arches',
+      src: amicaBarDisplay,
+      alt: 'The Curated Back-Bar Cabinet',
+      caption: 'Antiqued mercury mirror cubbies, decanters & vintage coupe collection',
+    },
+    {
+      src: amicaMirrorSconces,
+      alt: 'Midnight Wall & Fluted Sconces',
+      caption: 'Brushed brass pivot mirror capturing golden reflections of the cocktail bar',
+    },
+    {
+      src: amicaPowderRoom,
+      alt: 'The Art Deco Powder Room',
+      caption: 'Burgundy ginkgo fan wallpaper, dark glazed tiles & polished brass fittings',
+    },
+    {
+      src: amicaFacadeNight,
+      alt: '23 Frith Street Wedge Awning',
+      caption: 'Cocktail coupe icon, solid black doors & Parisian bistro table at night',
+    },
+    {
+      src: amicaEntranceDome,
+      alt: 'Burgundy Dome Entrance',
+      caption: 'Velvet rounded canopy, brass sconces & nighttime Soho cobblestones',
     },
   ];
 
@@ -112,7 +133,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
           {/* Right Hero Image (Crimson Speakeasy Bar) */}
           <div className="w-full lg:w-[57%] xl:w-[61%] relative min-h-[280px] sm:min-h-[400px] lg:min-h-full">
             <img
-              src={AMICA_BAR_IMAGE}
+              src={amicaCrimsonBar}
               alt="AMICA SOHO Crimson Speakeasy Cocktail Bar"
               className="w-full h-full object-cover object-center"
               referrerPolicy="no-referrer"
@@ -188,7 +209,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
             </div>
             <div className="w-full sm:w-1/2 min-h-[160px] sm:min-h-[190px] relative overflow-hidden border-t sm:border-t-0 sm:border-l border-maroon">
               <img
-                src={AMICA_BOOTH_IMAGE}
+                src={amicaVaultBooth}
                 alt="AMICA SOHO warm vaulted candlelit booths"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
@@ -219,8 +240,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
             </div>
             <div className="w-full sm:w-1/2 min-h-[160px] sm:min-h-[190px] relative overflow-hidden border-t sm:border-t-0 sm:border-l border-maroon">
               <img
-                src={VERMOUTH_POUR_IMAGE}
-                alt="AMICA SOHO crystal cocktail coupe and candlelight"
+                src={amicaBarDisplay}
+                alt="AMICA SOHO curated backbar and crystal cocktail coupes"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
@@ -250,8 +271,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
             </div>
             <div className="w-full sm:w-1/2 min-h-[160px] sm:min-h-[190px] relative overflow-hidden border-t sm:border-t-0 sm:border-l border-maroon">
               <img
-                src={VINYL_IMAGE}
-                alt="Vinyl selector record player at AMICA SOHO"
+                src={amicaMirrorSconces}
+                alt="AMICA SOHO midnight wall and brass sconces"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
@@ -295,7 +316,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
           {/* Right Panoramic Image */}
           <div className="w-full lg:w-[72%] xl:w-[74%] min-h-[220px] sm:min-h-[280px] relative overflow-hidden border-t lg:border-t-0 lg:border-l border-maroon">
             <img
-              src={AMICA_LOUNGE_IMAGE}
+              src={amicaNeonLounge}
               alt="AMICA SOHO Subterranean Private Hire Lounge and Bar"
               className="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700"
               referrerPolicy="no-referrer"
@@ -514,7 +535,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) =>
           <div className="hidden md:flex items-center gap-3">
             <div className="w-12 h-12 rounded-full overflow-hidden border border-[#DFBE7B] shadow-md">
               <img
-                src={AMICA_ENTRANCE_IMAGE}
+                src={amicaEntranceDome}
                 alt="Amica Soho Entrance"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

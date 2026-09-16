@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { PageId } from '../types';
 import { PRIVATE_HIRE_PACKAGES } from '../data/venueData';
 import { Users, Calendar, DollarSign, CheckCircle2, Sparkles, Send, Clock, Wine, Mail, Phone, Info } from 'lucide-react';
-
-import PRIVATE_IMAGE from '../assets/images/amica_vault_booth_1789519232696.jpg';
+import { amicaOxbloodLounge, amicaArchBooth, amicaVaultBooth } from '../assets/images/photos';
 
 interface PrivateHirePageProps {
   onNavigate: (page: PageId) => void;
@@ -69,7 +68,7 @@ export const PrivateHirePage: React.FC<PrivateHirePageProps> = ({ onNavigate }) 
       {/* Hero Image Showcase */}
       <div className="relative rounded-2xl overflow-hidden border border-[#9D7E54]/40 shadow-2xl aspect-[21/9]">
         <img
-          src={PRIVATE_IMAGE}
+          src={amicaOxbloodLounge}
           alt="Private hire lounge setup at AMICA SOHO Frith Street"
           className="w-full h-full object-cover filter brightness-[0.7]"
           referrerPolicy="no-referrer"

@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, ZoomIn, X, Sparkles, BookOpen, Quote, ShieldCheck } from 'lucide-react';
 
-import posterBurlesque from '../assets/images/burlesque_poster_art_1786331567078.jpg';
-import posterMilanoNy from '../assets/images/milano_ny_poster_art_1786331429944.jpg';
-import posterSpritz from '../assets/images/lac_vintage_poster_spritz_1786330104445.jpg';
-import posterVermouth from '../assets/images/lac_vintage_poster_vermouth_1786330118529.jpg';
-import posterCampari from '../assets/images/lac_poster_campari_30s_1786330308931.jpg';
-import posterCicchetti from '../assets/images/lac_poster_cicchetti_40s_1786330322410.jpg';
+import {
+  amicaNeonLounge as posterBurlesque,
+  amicaBarDisplay as posterMilanoNy,
+  amicaCrimsonBar as posterSpritz,
+  amicaVaultBooth as posterVermouth,
+  amicaArchBooth as posterCampari,
+  amicaOxbloodLounge as posterCicchetti,
+} from '../assets/images/photos';
 
 interface VintagePoster {
   id: string;
