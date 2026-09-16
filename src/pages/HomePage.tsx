@@ -1,335 +1,624 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageId } from '../types';
-import { Wine, Calendar, Clock, MapPin, Sparkles, ArrowRight, Music, ShieldCheck, Heart, Award, Disc } from 'lucide-react';
-import { VENUE_INFO } from '../data/venueData';
-import { MENU_ITEMS } from '../data/menuData';
-import { AnimatedHeroSlider } from '../components/AnimatedHeroSlider';
-import { AnimatedPosterSlider } from '../components/AnimatedPosterSlider';
+import { Mail, Phone, Instagram, MapPin, X, ChevronRight, ExternalLink } from 'lucide-react';
 
-// Image assets for 23 SOHO / 23 Frith Street
-import BAR_COUNTER_IMAGE from '../assets/images/lac_bar_counter_soho_1786315443098.jpg';
-import SPRITZ_IMAGE from '../assets/images/aperitivo_spritz_plates_1786202515156.jpg';
-import CICCHETTI_IMAGE from '../assets/images/lac_cicchetti_board_soho_1786315452773.jpg';
+// Generated high-fidelity photo assets for AMICA SOHO
+import AMICA_ENTRANCE_IMAGE from '../assets/images/amica_hero_entrance_1789519211124.jpg';
+import AMICA_BAR_IMAGE from '../assets/images/amica_crimson_bar_1789519221390.jpg';
+import AMICA_BOOTH_IMAGE from '../assets/images/amica_vault_booth_1789519232696.jpg';
+import AMICA_LOUNGE_IMAGE from '../assets/images/amica_neon_lounge_1789519242449.jpg';
 import VERMOUTH_POUR_IMAGE from '../assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
-import BOOTH_IMAGE from '../assets/images/lac_subterranean_booth_1786315472218.jpg';
 import VINYL_IMAGE from '../assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
-import PRIVATE_IMAGE from '../assets/images/private_hire_space_1786202544546.jpg';
+import WINE_VAULT_IMAGE from '../assets/images/wine_vault_ambiance_1786202528861.jpg';
+import BANQUETTE_IMAGE from '../assets/images/lac_subterranean_booth_1786315472218.jpg';
+import LOUNGE_IMAGE from '../assets/images/milano_ny_aperitivo_lounge_1786331418627.jpg';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
-  onOpenQuiz: () => void;
+  onOpenQuiz?: () => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuiz }) => {
-  const signatureItems = MENU_ITEMS.filter((item) => item.tags?.includes('Signature') || item.tags?.includes('Best Seller')).slice(0, 3);
+  const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
+
+  // Gallery items matching the 6-thumbnail strip in the screenshot
+  const galleryItems = [
+    {
+      src: AMICA_BAR_IMAGE,
+      alt: 'The Crimson Speakeasy Bar',
+      caption: 'Back-lit crimson spirits gallery with Italian vermouths & vintage amari',
+    },
+    {
+      src: AMICA_BOOTH_IMAGE,
+      alt: 'The Vaulted Amber Booths',
+      caption: 'Curved illuminated brick niches designed for unhurried conversations',
+    },
+    {
+      src: LOUNGE_IMAGE,
+      alt: 'The Subterranean Cocktail Lounge',
+      caption: 'Low-slung leather armchairs beneath vintage Italian art frames',
+    },
+    {
+      src: WINE_VAULT_IMAGE,
+      alt: 'The Reserve Wine & Amaro Cellar',
+      caption: 'Hand-selected rare volcanic Italian reds and cask-aged Negroni vessels',
+    },
+    {
+      src: AMICA_ENTRANCE_IMAGE,
+      alt: 'The 23 Frith Street Awning Facade',
+      caption: 'The discrete burgundy curved awning and fluted amber doors in Soho',
+    },
+    {
+      src: BANQUETTE_IMAGE,
+      alt: 'Intimate Corner Banquettes',
+      caption: 'Plush oxblood leather banquettes tucked into subterranean brick arches',
+    },
+  ];
 
   return (
-    <div className="space-y-24 pb-20">
+    <div className="w-full bg-maroon-deep text-[#FDFBF7] font-sans selection:bg-[#C5A059] selection:text-[#150306] overflow-x-hidden">
       
-      {/* ANIMATED HERO SLIDER SHOWCASE */}
-      <AnimatedHeroSlider onNavigate={onNavigate} onOpenQuiz={onOpenQuiz} />
-
-      {/* RITUAL & PHILOSOPHY BANNER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#121215] border border-[#C5A059]/30 rounded-2xl p-8 sm:p-12 shadow-2xl overflow-hidden relative">
+      {/* =========================================================================
+          1. HERO SECTION
+          Signature velvet maroon undertone with gleaming golden AMICA accents:
+          - Left: 23 FRITH ST, SOHO + Cocktails & Aperitivo + divider + Subtitle + BOOK NOW / VIEW MENU
+          - Right: Crimson Bar with illuminated glassware and glowing lamps
+          - Far Right: Vertical text COCKTAILS / MUSIC / PEOPLE / SOHO
+         ========================================================================= */}
+      <section className="relative w-full border-b border-maroon bg-maroon-deep overflow-hidden">
+        <div className="w-full flex flex-col lg:flex-row items-stretch min-h-[480px] sm:min-h-[540px] lg:min-h-[580px]">
           
-          <div className="space-y-6 z-10">
-            <div className="flex items-center gap-2 text-[#DFBE7B] text-xs font-display uppercase tracking-widest">
-              <Sparkles className="w-4 h-4 text-[#C5A059]" />
-              <span>The 23 Soho Golden Hour</span>
-            </div>
+          {/* Left Text Block with subtle Velvet Maroon depth */}
+          <div className="w-full lg:w-[38%] xl:w-[35%] p-6 sm:p-10 lg:p-12 xl:p-16 flex flex-col justify-center z-10 bg-gradient-to-b from-maroon-dark via-burgundy-dark to-maroon-deep border-b lg:border-b-0 lg:border-r border-maroon">
             
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#FDFBF7] leading-tight">
-              An Evening Unhurried: The Golden Hour Ritual at 23 Soho
-            </h2>
+            {/* Awning-inspired pill badge */}
+            <div className="awning-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border-maroon-gold w-fit mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold-amica animate-pulse shadow-[0_0_8px_#DFBE7B]"></span>
+              <span className="text-[10px] sm:text-[10.5px] font-sans tracking-[0.26em] uppercase text-gold-amica font-semibold">
+                23 FRITH ST, SOHO
+              </span>
+            </div>
 
-            <p className="text-sm text-[#FDFBF7]/80 leading-relaxed font-sans">
-              In Northern Italy and London's historic West End, cocktail hour is not merely a pre-dinner drink—it is a sacred pause between the urgency of the day and the hedonism of the night.
+            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-light text-[#FDFBF7] leading-[1.08] tracking-tight drop-shadow-[0_2px_12px_rgba(74,14,23,0.6)]">
+              Cocktails <span className="text-gold-amica font-normal">&amp;</span><br />
+              Aperitivo
+            </h1>
+
+            {/* Golden Amica accent divider */}
+            <div className="w-14 h-[1.5px] bg-gradient-to-r from-[#DFBE7B] to-[#9D7E54] my-5 shadow-[0_0_8px_rgba(223,190,123,0.4)]" />
+
+            <p className="text-[10px] sm:text-[11px] font-sans tracking-[0.26em] text-gold-amica uppercase font-medium mb-8">
+              GOOD DRINKS &nbsp;/&nbsp; LATE NIGHTS &nbsp;/&nbsp; SOHO SPIRIT
             </p>
 
-            <p className="text-sm text-[#FDFBF7]/80 leading-relaxed font-sans">
-              Every afternoon from 16:30 to 18:30, guests at 23 SOHO enjoy complimentary seasonal cicchetti—warm rosemary focaccia, marinated Castelvetrano olives, and artisan prosciutto—served alongside their first spritz, rare vermouth, or signature cocktail.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            {/* Action Buttons: Brushed Gold + Velvet Maroon with Gold Border (Mobile Touch-Optimized) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <button
-                onClick={onOpenQuiz}
-                className="btn-brass-outline px-5 py-3 rounded flex items-center gap-2 text-xs tracking-wider uppercase font-display cursor-pointer"
+                onClick={() => onNavigate('book')}
+                className="bg-[#C5A059] hover:bg-[#DFBE7B] text-[#08080A] font-sans font-semibold text-xs tracking-[0.22em] uppercase min-h-[44px] py-3.5 px-7 transition-all duration-200 cursor-pointer shadow-[0_4px_18px_rgba(74,14,23,0.6)] active:scale-95 border border-[#FFEAA7]/50 text-center flex items-center justify-center rounded-sm"
               >
-                <Sparkles className="w-4 h-4 text-[#C5A059]" />
-                <span>Take Aperitivo Pairing Quiz</span>
+                BOOK NOW
               </button>
 
               <button
-                onClick={() => onNavigate('venue')}
-                className="text-xs text-[#DFBE7B] hover:text-[#FFEAA7] font-display font-semibold uppercase tracking-wider underline underline-offset-4 cursor-pointer"
+                onClick={() => onNavigate('drinks-food')}
+                className="btn-maroon-gold min-h-[44px] py-3.5 px-7 text-xs text-center flex items-center justify-center cursor-pointer active:scale-95 rounded-sm"
               >
-                Read The 23 Soho Story →
+                VIEW MENU
               </button>
             </div>
           </div>
 
-          <div className="relative z-10">
-            <div className="relative rounded-xl overflow-hidden border-2 border-[#C5A059]/40 shadow-2xl aspect-[4/3]">
-              <img
-                src={SPRITZ_IMAGE}
-                alt="23 SOHO signature cocktails and Cicchetti small plates"
-                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-transparent to-transparent opacity-60" />
-              <div className="absolute bottom-4 left-4 right-4 p-4 bg-[#141418]/90 border border-[#C5A059]/30 backdrop-blur-md rounded text-xs">
-                <span className="font-display font-bold text-[#DFBE7B] text-sm block">The 23 Soho Venetian Spritz</span>
-                <span className="text-[#FDFBF7]/70 font-sans">Select Aperitivo 1920, Organic Prosecco DOCG & Castelvetrano Olive</span>
-              </div>
+          {/* Right Hero Image (Crimson Speakeasy Bar) */}
+          <div className="w-full lg:w-[57%] xl:w-[61%] relative min-h-[280px] sm:min-h-[400px] lg:min-h-full">
+            <img
+              src={AMICA_BAR_IMAGE}
+              alt="AMICA SOHO Crimson Speakeasy Cocktail Bar"
+              className="w-full h-full object-cover object-center"
+              referrerPolicy="no-referrer"
+            />
+            {/* Subtle atmospheric vignette gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-maroon-deep via-burgundy-dark/20 to-transparent lg:w-28 pointer-events-none" />
+          </div>
+
+          {/* Far Right: Vertical Soho Words Column with Maroon Velvet Tone */}
+          <div className="hidden xl:flex w-[4%] border-l border-maroon bg-maroon-deep flex-col justify-between items-center py-10 px-2 select-none">
+            <div className="text-[9px] font-sans tracking-[0.3em] text-gold-amica uppercase [writing-mode:vertical-rl] rotate-180 flex items-center gap-6">
+              <span>COCKTAILS</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#DFBE7B]/50" />
+              <span>MUSIC</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#DFBE7B]/50" />
+              <span>PEOPLE</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#DFBE7B]/50" />
+              <span className="text-[#FFEAA7] font-semibold">SOHO</span>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* GALLERY GRID OF SOHO EXPERIENCE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center space-y-3">
-          <span className="text-[#DFBE7B] text-xs font-display uppercase tracking-widest block">Subterranean Hospitality</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#FDFBF7]">
-            Inside 23 SOHO
-          </h2>
-          <p className="text-xs sm:text-sm text-[#DFBE7B]/80 max-w-xl mx-auto font-sans">
-            Explore our candlelit brick vaults, artisanal cicchetti boards, craft vermouth pours, and audiophile vinyl lounge.
-          </p>
+      {/* =========================================================================
+          AWNING MOTIF SIGNATURE BANNER
+          Directly celebrates the rich maroon velvet dome awning with gold embroidery
+         ========================================================================= */}
+      <div className="w-full bg-maroon-awning border-y border-maroon-gold py-2.5 sm:py-3 px-3 sm:px-4 text-center select-none shadow-[inset_0_1px_0_rgba(223,190,123,0.3)]">
+        <div className="max-w-6xl mx-auto flex items-center justify-center gap-3 sm:gap-8 text-gold-amica">
+          <span className="hidden sm:inline text-xs opacity-70">✦</span>
+          <span className="font-serif text-xs sm:text-base tracking-[0.25em] sm:tracking-[0.35em] text-[#FDFBF7] uppercase font-light">
+            A M I C A&nbsp;&nbsp;S O H O
+          </span>
+          <span className="text-xs text-gold-subtle">✦</span>
+          <span className="font-serif text-[10px] sm:text-xs tracking-[0.22em] sm:tracking-[0.3em] text-[#FFEAA7] uppercase font-medium">
+            APERITIVO &nbsp;•&nbsp; MUSIC &nbsp;•&nbsp; LATE
+          </span>
+          <span className="hidden sm:inline text-xs opacity-70">✦</span>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="relative rounded-xl overflow-hidden border border-[#C5A059]/30 group aspect-[4/3]">
-            <img src={CICCHETTI_IMAGE} alt="Hand carved prosciutto and Venetian cicchetti board" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-transparent to-transparent" />
-            <div className="absolute bottom-3 left-3 right-3 text-xs font-display text-[#DFBE7B]">
-              <span className="block font-bold">Artisanal Cicchetti Boards</span>
-              <span className="text-[10px] text-[#FDFBF7]/70 font-sans">Prosciutto di Parma 24-Month & Focaccia</span>
-            </div>
-          </div>
 
-          <div className="relative rounded-xl overflow-hidden border border-[#C5A059]/30 group aspect-[4/3]">
-            <img src={VERMOUTH_POUR_IMAGE} alt="Sommelier pouring cask-aged Vermouth di Torino" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-transparent to-transparent" />
-            <div className="absolute bottom-3 left-3 right-3 text-xs font-display text-[#DFBE7B]">
-              <span className="block font-bold">Cask-Aged Vermouth & Amari</span>
-              <span className="text-[10px] text-[#FDFBF7]/70 font-sans">Poured over hand-carved clear ice</span>
-            </div>
-          </div>
-
-          <div className="relative rounded-xl overflow-hidden border border-[#C5A059]/30 group aspect-[4/3]">
-            <img src={VINYL_IMAGE} alt="Audiophile vinyl turntable and Negroni in 23 Soho lounge" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-transparent to-transparent" />
-            <div className="absolute bottom-3 left-3 right-3 text-xs font-display text-[#DFBE7B]">
-              <span className="block font-bold">Analog Vinyl & Soho Jazz</span>
-              <span className="text-[10px] text-[#FDFBF7]/70 font-sans">Curated soundscapes on 23 Frith Street</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ANIMATED VINTAGE ITALIAN POSTER SLIDER SHOWCASE */}
-      <AnimatedPosterSlider />
-
-      {/* SIGNATURE DRINKS & CICCHETTI PREVIEW */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center space-y-3">
-          <span className="text-[#DFBE7B] text-xs font-display uppercase tracking-widest block">Crafted For The Palate</span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#FDFBF7]">
-            Signature Cocktails & Small Plates
-          </h2>
-          <p className="text-xs sm:text-sm text-[#DFBE7B]/80 max-w-xl mx-auto font-sans">
-            Curated by our mixology team and sommeliers, each pairing balances bitter botanical depth with rich Italian delicacies.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {signatureItems.map((item) => (
-            <div
-              key={item.id}
-              className="bg-[#121215] border border-[#C5A059]/30 rounded-xl p-6 space-y-4 hover:border-[#C5A059] transition-all duration-300 flex flex-col justify-between shadow-xl group"
-            >
-              <div className="space-y-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <span className="text-[10px] font-display tracking-wider text-[#DFBE7B] uppercase block">{item.italianName || item.category}</span>
-                    <h3 className="font-display text-lg font-bold text-[#FDFBF7] group-hover:text-[#DFBE7B] transition-colors">
-                      {item.name}
-                    </h3>
-                  </div>
-                  <span className="font-display text-base font-bold text-[#FFEAA7] bg-[#1A1A22] px-3 py-1 rounded border border-[#C5A059]/30 shrink-0">
-                    {item.price}
-                  </span>
-                </div>
-
-                <p className="text-xs text-[#FDFBF7]/75 leading-relaxed font-sans">
-                  {item.description}
+      {/* =========================================================================
+          2. THREE-COLUMN SECTION: [ About Amica ] | [ Cocktails / Menu ] | [ Music / DJs ]
+          Matches mockup:
+          - Each block split 50/50: Text on left, Photo on right
+          - Thin maroon-gold borders between blocks
+         ========================================================================= */}
+      <section className="w-full border-b border-maroon bg-maroon-deep">
+        <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-maroon">
+          
+          {/* Card 1: About Amica */}
+          <div className="flex flex-col sm:flex-row items-stretch bg-gradient-to-b from-burgundy-dark via-maroon-dark to-maroon-deep hover:from-burgundy transition-all duration-300">
+            <div className="w-full sm:w-1/2 p-6 sm:p-7 flex flex-col justify-between">
+              <div>
+                <h3 className="font-serif text-xl sm:text-2xl text-[#FDFBF7] font-normal">
+                  About Amica
+                </h3>
+                <div className="w-8 h-[1.5px] bg-gold-amica mt-1.5 mb-3" />
+                <p className="text-xs text-gold-amica/90 font-sans leading-relaxed">
+                  A subterranean cocktail bar in the heart of Soho, where refined drinks, intimate spaces and a nocturnal spirit come together.
                 </p>
-
-                {item.tastingNotes && (
-                  <p className="text-[11px] text-[#DFBE7B] bg-[#1A1A22] p-2.5 rounded border border-[#C5A059]/20 font-serif italic">
-                    Tasting: "{item.tastingNotes}"
-                  </p>
-                )}
               </div>
-
-              <div className="pt-3 border-t border-[#C5A059]/20 flex items-center justify-between text-xs">
-                {item.pairingRecommendation && (
-                  <span className="text-[10px] text-[#C5A059] font-medium flex items-center gap-1 font-sans">
-                    <Heart className="w-3 h-3 text-[#C5A059]" />
-                    <span>Pairs with: {item.pairingRecommendation}</span>
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center pt-4">
-          <button
-            onClick={() => onNavigate('drinks-food')}
-            className="btn-brass px-8 py-3.5 text-xs tracking-widest uppercase rounded cursor-pointer"
-          >
-            View Full Drinks & Food Menu
-          </button>
-        </div>
-      </section>
-
-      {/* VENUE AMBIANCE & SOHO HERITAGE */}
-      <section className="bg-[#121215] border-y border-[#C5A059]/30 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <div className="relative rounded-xl overflow-hidden border border-[#C5A059]/40 shadow-2xl aspect-[16/10]">
-              <img
-                src={BOOTH_IMAGE}
-                alt="23 SOHO subterranean leather booth lounge"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C] via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-6 left-6 right-6 p-4 bg-[#141418]/90 border border-[#C5A059]/40 backdrop-blur-md rounded">
-                <span className="text-[10px] font-display text-[#DFBE7B] uppercase tracking-wider block">Subterranean Leather Booths</span>
-                <p className="font-serif text-sm text-[#FDFBF7] italic">"An intimate sanctuary beneath 23 Frith Street."</p>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex items-center gap-2 text-[#DFBE7B] text-xs font-display uppercase tracking-widest">
-                <MapPin className="w-4 h-4 text-[#C5A059]" />
-                <span>23 Frith Street · Soho Basement</span>
-              </div>
-
-              <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#FDFBF7] leading-tight">
-                Step Down Behind Frith Street’s Curved Awning
-              </h2>
-
-              <p className="text-sm text-[#FDFBF7]/80 leading-relaxed font-sans">
-                Beneath the iconic black curved awning of 23 Frith Street lies an intimate sanctuary of leather banquettes, exposed subterranean brick arches, flickering candlelight, and rows of hand-selected wine vintages and spirits.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 pt-2">
-                <div className="p-4 bg-[#1A1A22] border border-[#C5A059]/20 rounded space-y-1">
-                  <ShieldCheck className="w-5 h-5 text-[#C5A059]" />
-                  <h4 className="font-display text-sm font-bold text-[#DFBE7B]">Sommelier Roots</h4>
-                  <p className="text-xs text-[#FDFBF7]/60 font-sans">Curated by hospitality veterans with over 500 handpicked bottles.</p>
-                </div>
-
-                <div className="p-4 bg-[#1A1A22] border border-[#C5A059]/20 rounded space-y-1">
-                  <Music className="w-5 h-5 text-[#C5A059]" />
-                  <h4 className="font-display text-sm font-bold text-[#DFBE7B]">Analog Sound</h4>
-                  <p className="text-xs text-[#FDFBF7]/60 font-sans">Italo-disco & rare vinyl jazz spins late into the evening.</p>
-                </div>
-              </div>
-
-              <div className="pt-2">
+              <div className="pt-5">
                 <button
                   onClick={() => onNavigate('venue')}
-                  className="btn-brass px-6 py-3 text-xs tracking-widest uppercase rounded cursor-pointer"
+                  className="btn-maroon-gold min-h-[44px] text-[10.5px] font-sans font-semibold tracking-[0.2em] uppercase py-2.5 px-5 transition-all cursor-pointer shadow-sm active:scale-95 w-full sm:w-auto inline-flex items-center justify-center rounded-sm"
                 >
-                  Discover The Venue
+                  OUR STORY
                 </button>
               </div>
             </div>
-
+            <div className="w-full sm:w-1/2 min-h-[160px] sm:min-h-[190px] relative overflow-hidden border-t sm:border-t-0 sm:border-l border-maroon">
+              <img
+                src={AMICA_BOOTH_IMAGE}
+                alt="AMICA SOHO warm vaulted candlelit booths"
+                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
+
+          {/* Card 2: Cocktails / Menu */}
+          <div className="flex flex-col sm:flex-row items-stretch bg-gradient-to-b from-burgundy-dark via-maroon-dark to-maroon-deep hover:from-burgundy transition-all duration-300">
+            <div className="w-full sm:w-1/2 p-6 sm:p-7 flex flex-col justify-between">
+              <div>
+                <h3 className="font-serif text-xl sm:text-2xl text-[#FDFBF7] font-normal">
+                  Cocktails / Menu
+                </h3>
+                <div className="w-8 h-[1.5px] bg-gold-amica mt-1.5 mb-3" />
+                <p className="text-xs text-gold-amica/90 font-sans leading-relaxed">
+                  Considered cocktails, classic serves and seasonal creations in an intimate setting.
+                </p>
+              </div>
+              <div className="pt-5">
+                <button
+                  onClick={() => onNavigate('drinks-food')}
+                  className="btn-maroon-gold min-h-[44px] text-[10.5px] font-sans font-semibold tracking-[0.2em] uppercase py-2.5 px-5 transition-all cursor-pointer shadow-sm active:scale-95 w-full sm:w-auto inline-flex items-center justify-center rounded-sm"
+                >
+                  VIEW MENU
+                </button>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 min-h-[160px] sm:min-h-[190px] relative overflow-hidden border-t sm:border-t-0 sm:border-l border-maroon">
+              <img
+                src={VERMOUTH_POUR_IMAGE}
+                alt="AMICA SOHO crystal cocktail coupe and candlelight"
+                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          {/* Card 3: Music / DJs */}
+          <div className="flex flex-col sm:flex-row items-stretch bg-gradient-to-b from-burgundy-dark via-maroon-dark to-maroon-deep hover:from-burgundy transition-all duration-300">
+            <div className="w-full sm:w-1/2 p-6 sm:p-7 flex flex-col justify-between">
+              <div>
+                <h3 className="font-serif text-xl sm:text-2xl text-[#FDFBF7] font-normal">
+                  Music / DJs
+                </h3>
+                <div className="w-8 h-[1.5px] bg-gold-amica mt-1.5 mb-3" />
+                <p className="text-xs text-gold-amica/90 font-sans leading-relaxed">
+                  Curated sounds for late nights in Soho. An intimate space for music, drinks and good company.
+                </p>
+              </div>
+              <div className="pt-5">
+                <button
+                  onClick={() => onNavigate('whats-on')}
+                  className="btn-maroon-gold min-h-[44px] text-[10.5px] font-sans font-semibold tracking-[0.2em] uppercase py-2.5 px-5 transition-all cursor-pointer shadow-sm active:scale-95 w-full sm:w-auto inline-flex items-center justify-center rounded-sm"
+                >
+                  WHAT'S ON
+                </button>
+              </div>
+            </div>
+            <div className="w-full sm:w-1/2 min-h-[160px] sm:min-h-[190px] relative overflow-hidden border-t sm:border-t-0 sm:border-l border-maroon">
+              <img
+                src={VINYL_IMAGE}
+                alt="Vinyl selector record player at AMICA SOHO"
+                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* PRIVATE HIRE TEASER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl overflow-hidden border border-[#C5A059]/40 bg-[#121215] p-8 sm:p-14 shadow-2xl">
-          <div className="absolute inset-0 z-0 opacity-20">
+
+      {/* =========================================================================
+          3. PRIVATE HIRE SECTION
+          Matches mockup:
+          - Left: Title "Private Hire" + underline + description + ENQUIRE NOW
+          - Right: Wide panoramic lounge image
+         ========================================================================= */}
+      <section className="w-full border-b border-maroon bg-maroon-deep">
+        <div className="w-full flex flex-col lg:flex-row items-stretch min-h-[260px] sm:min-h-[300px]">
+          
+          {/* Left Text Block */}
+          <div className="w-full lg:w-[28%] xl:w-[26%] p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-gradient-to-br from-burgundy via-burgundy-dark to-maroon-dark border-b lg:border-b-0 lg:border-r border-maroon">
+            <div>
+              <h2 className="font-serif text-2xl sm:text-3xl text-[#FDFBF7] font-normal">
+                Private Hire
+              </h2>
+              <div className="w-8 h-[1.5px] bg-gold-amica mt-1.5 mb-3" />
+              <p className="text-xs text-gold-amica/90 font-sans leading-relaxed">
+                An exclusive setting for private events, celebrations and bespoke experiences in Soho.
+              </p>
+            </div>
+            <div className="pt-6">
+              <button
+                onClick={() => onNavigate('private-hire')}
+                className="btn-maroon-gold min-h-[44px] text-[10.5px] font-sans font-semibold tracking-[0.2em] uppercase py-2.5 px-6 transition-all cursor-pointer shadow-sm active:scale-95 w-full sm:w-auto inline-flex items-center justify-center rounded-sm"
+              >
+                ENQUIRE NOW
+              </button>
+            </div>
+          </div>
+
+          {/* Right Panoramic Image */}
+          <div className="w-full lg:w-[72%] xl:w-[74%] min-h-[220px] sm:min-h-[280px] relative overflow-hidden border-t lg:border-t-0 lg:border-l border-maroon">
             <img
-              src={PRIVATE_IMAGE}
-              alt="Private hire event setup at 23 SOHO"
-              className="w-full h-full object-cover filter blur-[2px]"
+              src={AMICA_LOUNGE_IMAGE}
+              alt="AMICA SOHO Subterranean Private Hire Lounge and Bar"
+              className="w-full h-full object-cover object-center transform hover:scale-102 transition-transform duration-700"
               referrerPolicy="no-referrer"
             />
           </div>
 
-          <div className="relative z-10 max-w-2xl space-y-6">
-            <span className="text-[#DFBE7B] text-xs font-display uppercase tracking-widest block">Exclusive Vault Celebrations</span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#FDFBF7]">
-              Host Your Private Event at 23 SOHO
+        </div>
+      </section>
+
+
+      {/* =========================================================================
+          4. GALLERY SECTION
+          Matches mockup:
+          - Left: Title "Gallery" + underline + "A glimpse inside AMICA SOHO."
+          - Right: Horizontal row of 6 seamless thumbnails
+         ========================================================================= */}
+      <section className="w-full border-b border-maroon bg-maroon-deep">
+        <div className="w-full flex flex-col lg:flex-row items-stretch">
+          
+          {/* Left Title Block */}
+          <div className="w-full lg:w-[18%] p-6 sm:p-8 flex flex-col justify-center bg-gradient-to-b from-burgundy-dark to-maroon-deep border-b lg:border-b-0 lg:border-r border-maroon">
+            <h2 className="font-serif text-2xl text-[#FDFBF7] font-normal">
+              Gallery
             </h2>
-            <p className="text-sm text-[#FDFBF7]/85 leading-relaxed font-sans">
-              From intimate private gatherings in our arched Wine Cellar Vault (up to 14 guests) to full subterranean venue buyouts (up to 60 guests), 23 SOHO offers bespoke cocktail setups and masterclass packages.
+            <div className="w-8 h-[1.5px] bg-gold-amica mt-1.5 mb-2" />
+            <p className="text-[11px] text-gold-amica/90 font-sans">
+              A glimpse inside AMICA SOHO.
             </p>
-
-            <div className="flex flex-wrap gap-4 pt-2">
-              <button
-                onClick={() => onNavigate('private-hire')}
-                className="btn-brass px-6 py-3 text-xs tracking-widest uppercase rounded cursor-pointer"
-              >
-                View Private Hire Packages
-              </button>
-
-              <button
-                onClick={() => onNavigate('visit')}
-                className="btn-brass-outline px-6 py-3 text-xs font-semibold rounded cursor-pointer"
-              >
-                Contact Events Team
-              </button>
-            </div>
           </div>
+
+          {/* Right 6-Thumbnail Strip */}
+          <div className="w-full lg:w-[82%] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t lg:border-t-0 lg:border-l border-maroon divide-x divide-y sm:divide-y-0 divide-maroon">
+            {galleryItems.map((item, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveLightboxIndex(idx)}
+                className="relative group aspect-square sm:aspect-[4/3] lg:aspect-[4/3] overflow-hidden cursor-pointer focus:outline-none bg-maroon-deep min-h-[44px]"
+                title={item.alt}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-maroon-deep/20 group-hover:bg-transparent transition-colors" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-maroon-awning/60">
+                  <span className="text-[10px] tracking-widest uppercase font-serif text-[#FFEAA7] border border-gold-amica px-2.5 py-1 bg-maroon-dark/90 shadow-md">
+                    VIEW
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+
         </div>
       </section>
 
-      {/* PRESS & QUOTES */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-        <div className="space-y-2">
-          <span className="text-[#DFBE7B] text-xs font-display uppercase tracking-widest">Praise & Recognition</span>
-          <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#FDFBF7]">What Insiders Say</h3>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 bg-[#121215] border border-[#C5A059]/30 rounded-lg text-left space-y-3">
-            <div className="flex items-center text-[#C5A059] gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Award key={i} className="w-4 h-4 fill-current" />
-              ))}
+      {/* =========================================================================
+          5. OPENING HOURS & FIND US ROW
+          Matches mockup:
+          - Column 1: Opening Hours (7 days)
+          - Column 2: Find Us (23 Frith St, Soho + 4 contact icons + VIEW ON MAP)
+          - Column 3: Dark Soho map with streets and gold location pin
+         ========================================================================= */}
+      <section className="w-full border-b border-maroon bg-maroon-deep">
+        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-maroon">
+          
+          {/* Column 1: Opening Hours (Takes 4 cols) */}
+          <div className="lg:col-span-4 p-6 sm:p-8 lg:p-10 bg-gradient-to-b from-burgundy-dark to-maroon-deep flex flex-col justify-between">
+            <div>
+              <h2 className="font-serif text-xl sm:text-2xl text-[#FDFBF7] font-normal">
+                Opening Hours
+              </h2>
+              <div className="w-8 h-[1.5px] bg-gold-amica mt-1.5 mb-5" />
+
+              <div className="space-y-2 text-xs font-sans">
+                {[
+                  { day: 'Monday', hours: '17:00 – 01:00' },
+                  { day: 'Tuesday', hours: '17:00 – 01:00' },
+                  { day: 'Wednesday', hours: '17:00 – 01:00' },
+                  { day: 'Thursday', hours: '17:00 – 02:00' },
+                  { day: 'Friday', hours: '17:00 – 02:00' },
+                  { day: 'Saturday', hours: '17:00 – 02:00' },
+                  { day: 'Sunday', hours: '17:00 – 01:00' },
+                ].map((slot) => (
+                  <div key={slot.day} className="flex items-center justify-between text-[#E5DFD7]">
+                    <span className="font-light">{slot.day}</span>
+                    <span className="font-mono text-gold-amica tracking-wider font-medium">{slot.hours}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className="font-serif text-base italic text-[#FDFBF7]/90 leading-relaxed">
-              "An effortlessly stylish subterranean addition to Soho. The barrel-aged Negronis at 23 SOHO set the standard for late-night cocktails in London."
-            </p>
-            <span className="block text-xs text-[#DFBE7B] font-display tracking-wider uppercase">— London Hospitality Digest</span>
           </div>
 
-          <div className="p-6 bg-[#121215] border border-[#C5A059]/30 rounded-lg text-left space-y-3">
-            <div className="flex items-center text-[#C5A059] gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Award key={i} className="w-4 h-4 fill-current" />
-              ))}
+          {/* Column 2: Find Us (Takes 4 cols) */}
+          <div className="lg:col-span-4 p-6 sm:p-8 lg:p-10 bg-gradient-to-b from-burgundy via-burgundy-dark to-maroon-dark flex flex-col items-center justify-center text-center space-y-5">
+            <div>
+              <h2 className="font-serif text-xl sm:text-2xl text-[#FDFBF7] font-normal">
+                Find Us
+              </h2>
+              <p className="text-xs text-gold-amica font-sans mt-1.5 tracking-wider uppercase font-medium">
+                23 Frith St, Soho · London W1D 4RR
+              </p>
             </div>
-            <p className="font-serif text-base italic text-[#FDFBF7]/90 leading-relaxed">
-              "The golden hour ritual at 23 Frith Street is unmatched. Free cicchetti, vinyl records, and candlelit brick vaults—it feels like Milan transposed to Soho."
-            </p>
-            <span className="block text-xs text-[#DFBE7B] font-display tracking-wider uppercase">— West End Nightlife Guide</span>
+
+            {/* 4 Contact & Social Icons in Maroon Velvet Rings with Gold Borders (Min 44x44px touch targets) */}
+            <div className="flex items-center justify-center gap-4 text-gold-amica">
+              <a
+                href="mailto:reservations@amicasoho.com"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-burgundy border border-maroon-gold text-gold-amica hover:bg-maroon-awning hover:border-gold-amica flex items-center justify-center transition-all active:scale-95 shadow-sm"
+                title="Email Us"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+              <a
+                href="tel:+442079460192"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-burgundy border border-maroon-gold text-gold-amica hover:bg-maroon-awning hover:border-gold-amica flex items-center justify-center transition-all active:scale-95 shadow-sm"
+                title="Call Reservations"
+              >
+                <Phone className="w-4 h-4" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-burgundy border border-maroon-gold text-gold-amica hover:bg-maroon-awning hover:border-gold-amica flex items-center justify-center transition-all active:scale-95 shadow-sm"
+                title="Follow Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://maps.google.com/?q=23+Frith+Street+Soho+London"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-burgundy border border-maroon-gold text-gold-amica hover:bg-maroon-awning hover:border-gold-amica flex items-center justify-center transition-all active:scale-95 shadow-sm"
+                title="View on Google Maps"
+              >
+                <MapPin className="w-4 h-4" />
+              </a>
+            </div>
+
+            <a
+              href="https://maps.google.com/?q=23+Frith+Street+Soho+London+W1D+4RR"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-maroon-gold min-h-[44px] text-[10.5px] font-sans font-semibold tracking-[0.2em] uppercase py-2.5 px-6 transition-all cursor-pointer inline-flex items-center justify-center shadow-sm active:scale-95 w-full sm:w-auto rounded-sm"
+            >
+              VIEW ON MAP
+            </a>
           </div>
+
+          {/* Column 3: Stylized Dark Soho Map (Takes 4 cols) */}
+          <div className="lg:col-span-4 min-h-[240px] bg-[#0A0B0E] relative overflow-hidden flex items-center justify-center p-6 select-none group">
+            {/* Minimal Vector Street Map Canvas / Graphic */}
+            <div className="absolute inset-0 opacity-40">
+              {/* Street grid lines */}
+              <svg className="w-full h-full text-[#2A1017]" viewBox="0 0 400 250" fill="none" stroke="currentColor">
+                {/* Diagonal roads */}
+                <line x1="0" y1="60" x2="400" y2="180" strokeWidth="6" stroke="#1F080D" />
+                <line x1="40" y1="0" x2="320" y2="250" strokeWidth="5" stroke="#1F080D" />
+                <line x1="180" y1="0" x2="380" y2="200" strokeWidth="4" stroke="#1F080D" />
+                <line x1="10" y1="200" x2="380" y2="40" strokeWidth="4" stroke="#1F080D" />
+                <line x1="120" y1="250" x2="280" y2="0" strokeWidth="3" stroke="#1F080D" />
+              </svg>
+            </div>
+
+            {/* Street Names matching Soho layout */}
+            <span className="absolute left-10 bottom-14 text-[9px] font-sans tracking-[0.25em] text-[#DFBE7B]/70 uppercase">
+              SOHO
+            </span>
+            <span className="absolute left-24 bottom-6 text-[8px] font-sans tracking-[0.2em] text-[#DFBE7B]/60 uppercase rotate-[-25deg]">
+              CARNABY ST
+            </span>
+            <span className="absolute right-6 top-10 text-[8px] font-sans tracking-[0.2em] text-[#DFBE7B]/60 uppercase rotate-[-28deg]">
+              OLD COMPTON ST
+            </span>
+
+            {/* Maroon & Gold Awning Pin Marker */}
+            <a
+              href="https://maps.google.com/?q=23+Frith+Street+Soho+London+W1D+4RR"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-10 flex flex-col items-center group-hover:scale-110 transition-transform duration-300 cursor-pointer min-h-[44px] min-w-[44px] justify-center"
+            >
+              <div className="w-10 h-10 rounded-full bg-gradient-to-b from-[#DFBE7B] via-[#851C2C] to-[#3B0A12] p-[1.5px] shadow-[0_0_25px_rgba(223,190,123,0.6)]">
+                <div className="w-full h-full bg-burgundy rounded-full flex items-center justify-center text-gold-amica">
+                  <MapPin className="w-5 h-5 fill-current" />
+                </div>
+              </div>
+              <span className="font-serif text-[11px] tracking-[0.25em] text-[#FDFBF7] uppercase mt-1.5 font-bold drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                AMICA SOHO
+              </span>
+              <span className="text-[8px] tracking-wider text-gold-amica uppercase font-sans">
+                23 Frith Street
+              </span>
+            </a>
+          </div>
+
         </div>
       </section>
+
+
+      {/* =========================================================================
+          6. SIGNATURE BOTTOM RESERVATION BANNER: "Make a Reservation"
+          Rich Velvet Maroon Awning with Golden Accents & Mobile Safe Layout
+         ========================================================================= */}
+      <section className="relative w-full border-t border-b border-maroon-gold bg-maroon-awning py-9 px-6 sm:px-12 overflow-hidden shadow-[0_10px_35px_rgba(21,3,6,0.9)]">
+        {/* Fine gold border inlay top */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#DFBE7B] to-transparent opacity-60" />
+
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          
+          {/* Left: Atmospheric awning facade thumbnail */}
+          <div className="hidden md:flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full overflow-hidden border border-[#DFBE7B] shadow-md">
+              <img
+                src={AMICA_ENTRANCE_IMAGE}
+                alt="Amica Soho Entrance"
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[10px] font-serif tracking-[0.28em] text-gold-amica uppercase font-bold">
+                AMICA SOHO
+              </span>
+              <span className="text-[8.5px] font-sans tracking-[0.2em] text-[#FDFBF7] uppercase">
+                23 Frith Street
+              </span>
+            </div>
+          </div>
+
+          {/* Center: "Make a Reservation —" + BOOK NOW */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-center w-full sm:w-auto">
+            <h3 className="font-serif text-2xl sm:text-3xl text-[#FDFBF7] font-light drop-shadow-sm">
+              Make a Reservation <span className="text-gold-amica mx-2 font-normal">—</span>
+            </h3>
+
+            <button
+              onClick={() => onNavigate('book')}
+              className="bg-[#C5A059] hover:bg-[#DFBE7B] text-[#08080A] font-sans font-semibold text-xs tracking-[0.22em] uppercase min-h-[48px] py-3.5 px-8 transition-all duration-200 cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.5)] active:scale-95 whitespace-nowrap border border-[#FFEAA7]/60 w-full sm:w-auto flex items-center justify-center rounded-sm"
+            >
+              BOOK NOW
+            </button>
+          </div>
+
+          {/* Right: Vertical words stack in gold */}
+          <div className="text-center md:text-right">
+            <div className="text-[9px] font-sans tracking-[0.28em] text-gold-amica uppercase flex md:flex-col gap-3 md:gap-1 font-medium justify-center">
+              <span>GOOD DRINKS</span>
+              <span>GOOD COMPANY</span>
+              <span className="text-[#FFEAA7] font-semibold">SOHO SPIRIT</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          7. LIGHTBOX MODAL FOR GALLERY (Mobile Responsive)
+         ========================================================================= */}
+      {activeLightboxIndex !== null && (
+        <div className="fixed inset-0 z-50 bg-maroon-deep/95 backdrop-blur-xl flex items-center justify-center p-4 animate-fadeIn">
+          <div className="relative max-w-4xl w-full bg-maroon-dark border border-maroon-gold p-4 sm:p-6 shadow-2xl rounded-lg">
+            {/* Close Button with min 44x44px touch area */}
+            <button
+              onClick={() => setActiveLightboxIndex(null)}
+              className="absolute top-3 right-3 sm:top-5 sm:right-5 w-11 h-11 rounded-full border border-maroon-gold hover:border-gold-amica text-[#FDFBF7] hover:text-gold-amica flex items-center justify-center transition-colors cursor-pointer z-10 bg-burgundy/80"
+              aria-label="Close image"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Image */}
+            <div className="w-full aspect-[16/10] overflow-hidden rounded mb-4">
+              <img
+                src={galleryItems[activeLightboxIndex].src}
+                alt={galleryItems[activeLightboxIndex].alt}
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            {/* Caption & Navigation */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-maroon">
+              <div>
+                <h4 className="font-serif text-lg text-[#FDFBF7]">
+                  {galleryItems[activeLightboxIndex].alt}
+                </h4>
+                <p className="text-xs text-gold-amica font-sans mt-0.5">
+                  {galleryItems[activeLightboxIndex].caption}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() =>
+                    setActiveLightboxIndex(
+                      (activeLightboxIndex - 1 + galleryItems.length) % galleryItems.length
+                    )
+                  }
+                  className="px-4 py-2 min-h-[44px] text-xs text-gold-amica border border-maroon-gold hover:border-gold-amica transition-colors cursor-pointer bg-burgundy/60 rounded flex items-center justify-center"
+                >
+                  Prev
+                </button>
+                <span className="text-xs text-gold-subtle font-mono px-2">
+                  {activeLightboxIndex + 1} / {galleryItems.length}
+                </span>
+                <button
+                  onClick={() =>
+                    setActiveLightboxIndex((activeLightboxIndex + 1) % galleryItems.length)
+                  }
+                  className="px-4 py-2 min-h-[44px] text-xs text-gold-amica border border-maroon-gold hover:border-gold-amica transition-colors cursor-pointer bg-burgundy/60 rounded flex items-center justify-center"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

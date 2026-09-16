@@ -75,7 +75,7 @@ export const AperitivoQuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, 
           <span>Interactive Aperitivo Finder</span>
         </div>
         <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#FDFBF7] mb-6 tracking-wide">
-          Find Your 23 SOHO Pairing
+          Find Your AMICA SOHO Pairing
         </h2>
 
         {/* Quiz Steps */}
@@ -111,7 +111,7 @@ export const AperitivoQuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, 
 
         {step === 2 && (
           <div className="space-y-4">
-            <p className="text-sm text-[#DFBE7B]/80 font-sans">2. What atmosphere brings you to 23 SOHO tonight?</p>
+            <p className="text-sm text-[#DFBE7B]/80 font-sans">2. What atmosphere brings you to AMICA SOHO tonight?</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 { id: 'post-work', title: 'Post-Work Golden Hour', desc: 'Early evening unwind with colleagues' },
@@ -175,7 +175,7 @@ export const AperitivoQuizModal: React.FC<QuizModalProps> = ({ isOpen, onClose, 
             <div className="p-5 bg-[#181820] border border-[#C5A059]/40 rounded-lg space-y-4">
               <div className="flex items-center gap-2 text-[#DFBE7B] text-xs font-display uppercase tracking-wider">
                 <Check className="w-4 h-4 text-[#C5A059]" />
-                <span>Your Ideal 23 SOHO Match</span>
+                <span>Your Ideal AMICA SOHO Match</span>
               </div>
 
               {/* Recommended Drink */}

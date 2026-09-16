@@ -79,7 +79,7 @@ export const BookPage: React.FC<BookPageProps> = ({ onNavigate, onBookingComplet
           ONLINE TABLE RESERVATION · 23 FRITH STREET SOHO
         </span>
         <h1 className="font-display text-4xl sm:text-6xl font-bold text-[#FDFBF7] tracking-wide">
-          Reserve Your Table at 23 SOHO
+          Reserve Your Table at AMICA SOHO
         </h1>
         <p className="text-xs sm:text-sm text-[#DFBE7B]/80 max-w-xl mx-auto leading-relaxed font-sans">
           Bookings available for 1 to 8 guests. Instant digital reservation confirmation pass generated upon completion.

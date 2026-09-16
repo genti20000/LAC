@@ -24,13 +24,13 @@ export const WhatsOnPage: React.FC<WhatsOnPageProps> = ({ onNavigate }) => {
       {/* Page Title */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
         <span className="text-[#DFBE7B] text-xs font-display uppercase tracking-widest block">
-          CURATED PROGRAMME · 23 SOHO LONDON
+          CURATED PROGRAMME · AMICA SOHO LONDON
         </span>
         <h1 className="font-display text-4xl sm:text-6xl font-bold text-[#FDFBF7] tracking-wide">
           What’s On & Cellar Sessions
         </h1>
         <p className="text-xs sm:text-sm text-[#DFBE7B]/80 leading-relaxed font-sans">
-          From analog vinyl disco nights and daily golden hour cicchetti to intimate sommelier vermouth masterclasses, experience 23 SOHO in motion.
+          From analog vinyl disco nights and daily golden hour cicchetti to intimate sommelier vermouth masterclasses, experience AMICA SOHO in motion.
         </p>
       </div>
 

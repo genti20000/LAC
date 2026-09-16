@@ -12,6 +12,7 @@ import { AperitivoQuizModal } from './components/AperitivoQuizModal';
 import { BookingConfirmationModal } from './components/BookingConfirmationModal';
 
 // Pages
+import { ComingSoonPage } from './pages/ComingSoonPage';
 import { HomePage } from './pages/HomePage';
 import { DrinksFoodPage } from './pages/DrinksFoodPage';
 import { VenuePage } from './pages/VenuePage';
@@ -21,7 +22,7 @@ import { VisitPage } from './pages/VisitPage';
 import { BookPage } from './pages/BookPage';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
+  const [currentPage, setCurrentPage] = useState<PageId>('coming-soon');
   const [quizOpen, setQuizOpen] = useState<boolean>(false);
   const [activeConfirmation, setActiveConfirmation] = useState<BookingConfirmation | null>(null);
 
@@ -59,7 +60,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0B0B0C] text-[#FDFBF7] font-sans selection:bg-[#C5A059] selection:text-[#0B0B0C]">
+    <div className="min-h-screen flex flex-col bg-maroon-deep text-[#FDFBF7] font-sans selection:bg-[#C5A059] selection:text-[#150306] overflow-x-hidden">
       
       {/* Header Bar */}
       <Header
@@ -69,7 +70,11 @@ export default function App() {
       />
 
       {/* Main Page Content */}
-      <main className="flex-1">
+      <main className={`flex-1 ${currentPage === 'coming-soon' ? '' : 'pb-20 md:pb-0'}`}>
+        {currentPage === 'coming-soon' && (
+          <ComingSoonPage onNavigate={navigateTo} />
+        )}
+
         {currentPage === 'home' && (
           <HomePage
             onNavigate={navigateTo}
@@ -111,34 +116,44 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <Footer onNavigate={navigateTo} />
+      {/* Footer (Hidden on Coming Soon landing page to match design screenshot exactly) */}
+      {currentPage !== 'coming-soon' && (
+        <Footer onNavigate={navigateTo} />
+      )}
 
-      {/* Sticky Mobile Bottom CTA Bar for Instant Conversions */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0E0E12]/95 backdrop-blur-lg border-t border-[#C5A059]/40 p-2.5 px-4 flex items-center justify-between gap-3 shadow-[0_-10px_25px_rgba(0,0,0,0.9)]">
-        <div className="flex items-center gap-2 text-xs text-[#DFBE7B]">
-          <span className="w-2 h-2 rounded-full bg-[#C5A059] animate-pulse"></span>
-          <span className="font-display font-bold text-[#FDFBF7] tracking-widest uppercase">23 SOHO</span>
-        </div>
-
-        <div className="flex items-center gap-2">
+      {/* Sticky Mobile Bottom CTA Bar (Hidden on Coming Soon landing page) */}
+      {currentPage !== 'coming-soon' && (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-maroon-dark/95 backdrop-blur-xl border-t border-maroon-gold p-2.5 px-4 pb-[max(0.65rem,env(safe-area-inset-bottom,0px))] flex items-center justify-between gap-3 shadow-[0_-10px_30px_rgba(21,3,6,0.95)]">
           <button
-            onClick={() => setQuizOpen(true)}
-            className="btn-brass-outline px-3 py-1.5 rounded flex items-center gap-1 active:scale-95 cursor-pointer text-[11px]"
+            onClick={() => navigateTo('home')}
+            className="flex items-center gap-2 text-xs text-gold-amica min-h-[44px] cursor-pointer text-left focus:outline-none"
           >
-            <Sparkles className="w-3 h-3 text-[#C5A059]" />
-            <span>Quiz</span>
+            <span className="w-2 h-2 rounded-full bg-gold-amica animate-pulse shadow-[0_0_8px_#DFBE7B]"></span>
+            <div className="flex flex-col">
+              <span className="font-serif font-semibold text-[#FDFBF7] tracking-[0.2em] uppercase text-[11px] leading-tight">
+                AMICA SOHO
+              </span>
+              <span className="text-[8px] text-[#DFBE7B]/80 font-sans tracking-widest uppercase">23 Frith St, Soho</span>
+            </div>
           </button>
 
-          <button
-            onClick={() => navigateTo('book')}
-            className="btn-brass px-4 py-2 text-xs rounded shadow-md flex items-center gap-1.5 active:scale-95 cursor-pointer"
-          >
-            <Calendar className="w-3.5 h-3.5" />
-            <span>Book</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigateTo('drinks-food')}
+              className="bg-burgundy hover:bg-maroon-awning border border-maroon-gold text-gold-amica px-3.5 py-2 min-h-[44px] text-[10.5px] tracking-wider uppercase font-sans cursor-pointer active:scale-95 transition-all flex items-center justify-center rounded"
+            >
+              Menu
+            </button>
+
+            <button
+              onClick={() => navigateTo('book')}
+              className="btn-maroon-gold font-semibold px-4 py-2 min-h-[44px] text-[10.5px] tracking-widest uppercase font-sans cursor-pointer shadow-[0_4px_15px_rgba(59,10,18,0.7)] active:scale-95 flex items-center justify-center rounded border border-[#DFBE7B]"
+            >
+              Book
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Interactive Aperitivo Finder Quiz Modal */}
       <AperitivoQuizModal

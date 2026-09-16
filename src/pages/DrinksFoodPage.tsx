@@ -67,7 +67,7 @@ export const DrinksFoodPage: React.FC<DrinksFoodPageProps> = ({
       {/* Header Title */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
         <span className="text-[#DFBE7B] text-xs font-display uppercase tracking-widest block">
-          CURATED MENU · 23 SOHO LONDON
+          CURATED MENU · AMICA SOHO LONDON
         </span>
         <h1 className="font-display text-4xl sm:text-6xl font-bold text-[#FDFBF7] tracking-wide">
           Drinks, Cocktails & Cicchetti

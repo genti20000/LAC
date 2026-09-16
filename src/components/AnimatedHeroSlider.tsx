@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Calendar, Sparkles, MapPin, Clock } from 'lucide-react';
 import { PageId } from '../types';
 
+import amicaEntranceImg from '../assets/images/amica_hero_entrance_1789519211124.jpg';
+import amicaCrimsonBarImg from '../assets/images/amica_crimson_bar_1789519221390.jpg';
+import amicaVaultBoothImg from '../assets/images/amica_vault_booth_1789519232696.jpg';
+import amicaNeonLoungeImg from '../assets/images/amica_neon_lounge_1789519242449.jpg';
 import burlesquePerfImg from '../assets/images/burlesque_singer_perf_1786331553709.jpg';
 import burlesquePosterImg from '../assets/images/burlesque_poster_art_1786331567078.jpg';
 import milanoLoungeImg from '../assets/images/milano_ny_aperitivo_lounge_1786331418627.jpg';
@@ -16,7 +20,6 @@ import boothImg from '../assets/images/lac_subterranean_booth_1786315472218.jpg'
 import cicchettiPosterImg from '../assets/images/lac_poster_cicchetti_40s_1786330322410.jpg';
 import pourImg from '../assets/images/lac_vermouth_pour_soho_1786315461286.jpg';
 import vinylImg from '../assets/images/lac_vinyl_turntable_aperitivo_1786315480379.jpg';
-import sohoFacadeImg from '../assets/images/soho_23_facade_night_1788541352970.jpg';
 
 interface HeroSlide {
   id: string;
@@ -28,18 +31,32 @@ interface HeroSlide {
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    id: 'soho-23-facade',
-    image: sohoFacadeImg,
-    title: '23 SOHO · 23 Frith Street, London',
+    id: 'amica-entrance',
+    image: amicaEntranceImg,
+    title: 'AMICA SOHO · 23 Frith Street, London',
     type: 'venue',
-    subtitle: 'Cocktails · Music · Late | Iconic curved awning & late-night subterranean haven',
+    subtitle: 'Aperitivo · Music · Late | Iconic curved burgundy canopy & subterranean haven',
   },
   {
-    id: 'burlesque-poster',
-    image: burlesquePosterImg,
-    title: '1930s La Bella Cabaret & Burlesque Vintage Poster',
-    type: 'poster',
-    subtitle: 'Original Art Deco cabaret lithograph artwork',
+    id: 'amica-crimson-bar',
+    image: amicaCrimsonBarImg,
+    title: 'The Subterranean Speakeasy Bar · Cocktails & Mischief',
+    type: 'venue',
+    subtitle: 'Crimson illuminated backbar, fluted marble counters, and bespoke mixology',
+  },
+  {
+    id: 'amica-vault-booth',
+    image: amicaVaultBoothImg,
+    title: 'Arched Brick Vault Booths · Candlelit Seclusion',
+    type: 'venue',
+    subtitle: 'Burgundy Art Deco fan motifs, warm gold cove uplighting, and private table service',
+  },
+  {
+    id: 'amica-neon-lounge',
+    image: amicaNeonLoungeImg,
+    title: 'Soho After Dark · Nocturnal Cocktail Lounge',
+    type: 'venue',
+    subtitle: 'Late night vinyl selectors, artisanal spirits, and unhurried aperitivo culture',
   },
   {
     id: 'burlesque-live',
@@ -49,25 +66,32 @@ const HERO_SLIDES: HeroSlide[] = [
     subtitle: 'Glamorous live jazz vocals, vintage burlesque performances, and midnight cocktails',
   },
   {
+    id: 'burlesque-poster',
+    image: burlesquePosterImg,
+    title: '1930s La Bella Cabaret & Burlesque Vintage Poster',
+    type: 'poster',
+    subtitle: 'Original Art Deco cabaret lithograph artwork',
+  },
+  {
     id: 'milano-ny-lounge',
     image: milanoLoungeImg,
-    title: 'Milano Fashion Week Meets Soho New York Loft Bar',
+    title: 'Milano Elegance Meets Soho Industrial Soul',
     type: 'venue',
-    subtitle: 'Polished terrazzo marble, Campari Sbagliato, and Manhattan industrial soul',
+    subtitle: 'Polished terrazzo marble, Campari Sbagliato, and subterranean energy',
   },
   {
     id: 'milano-ny-poster',
     image: milanoPosterImg,
     title: 'Milano x Soho New York Aperitivo Vintage Poster',
     type: 'poster',
-    subtitle: 'Crimson gold leaf Art Deco artwork combining Duomo and Manhattan skyline',
+    subtitle: 'Crimson gold leaf Art Deco artwork combining Duomo and skyline',
   },
   {
     id: 'vaults',
     image: vaultsImg,
-    title: '23 SOHO · Subterranean Soho Vaults',
+    title: 'Historic Subterranean Soho Cellars',
     type: 'venue',
-    subtitle: 'Candlelit brick vaults and plush velvet seating beneath Frith Street',
+    subtitle: 'Exposed brick vaults and plush velvet banquettes beneath Frith Street',
   },
   {
     id: 'poster-spritz',
@@ -77,46 +101,11 @@ const HERO_SLIDES: HeroSlide[] = [
     subtitle: 'Original mid-century Italian graphic art print',
   },
   {
-    id: 'poster-vermouth',
-    image: vermouthPosterImg,
-    title: '1920s Art Deco Vermouth di Torino Poster',
-    type: 'poster',
-    subtitle: 'Framed above the main bar counter',
-  },
-  {
     id: 'bar-counter',
     image: barCounterImg,
-    title: 'Soho Bar Counter & Hand-Carved Ice',
+    title: 'Soho Bar Counter & Hand-Carved Clear Ice',
     type: 'venue',
     subtitle: 'Rested oak-barrel Negronis and Venetian Spritzes',
-  },
-  {
-    id: 'poster-campari',
-    image: campariPosterImg,
-    title: '1930s Italian Futurist Bitter Campari Poster',
-    type: 'poster',
-    subtitle: 'Display artwork at entrance vestibule',
-  },
-  {
-    id: 'booths',
-    image: boothImg,
-    title: 'Oxblood Velvet Vault Booths',
-    type: 'venue',
-    subtitle: 'Intimate seating surrounded by vintage prints',
-  },
-  {
-    id: 'poster-campari-cicchetti',
-    image: cicchettiPosterImg,
-    title: '1940s Vino e Cicchetti Bacaro Poster',
-    type: 'poster',
-    subtitle: 'Venetian tavern heritage lithograph',
-  },
-  {
-    id: 'pour',
-    image: pourImg,
-    title: 'Cask-Aged House Vermouth Pour',
-    type: 'venue',
-    subtitle: 'Infused with alpine wormwood and citrus peel',
   },
   {
     id: 'vinyl',

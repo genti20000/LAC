@@ -4,8 +4,8 @@ export const MENU_ITEMS: MenuItem[] = [
   // APERITIVI & SPRITZES
   {
     id: 'lac-signature-spritz',
-    name: 'The 23 SOHO Signature Spritz',
-    italianName: 'Spritz Sohosino',
+    name: 'The AMICA SOHO Signature Spritz',
+    italianName: 'Spritz Amica',
     category: 'aperitivi',
     price: '£12.50',
     description: 'Select Aperitivo 1920, organic Prosecco Superiore DOCG, soda, garnishing with green Castelvetrano olive & Sicilian orange wheel.',
@@ -149,7 +149,7 @@ export const MENU_ITEMS: MenuItem[] = [
   // CHARCUTERIE & CHEESE
   {
     id: 'lac-gran-tagliere',
-    name: 'The 23 SOHO Grand Board',
+    name: 'The AMICA SOHO Grand Board',
     category: 'charcuterie',
     price: '£26.00',
     description: 'Prosciutto di Parma 24-month, Finocchiona salami, Bresaola, Ubriaco al Raboso cheese, Gorgonzola Dolce, pickled chillies, gnocco fritto & chutney.',

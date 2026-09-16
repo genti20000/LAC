@@ -16,9 +16,9 @@ export const BookingConfirmationModal: React.FC<BookingConfirmationModalProps> =
   const downloadCalendarFile = () => {
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//23 SOHO//EN
+PRODID:-//AMICA SOHO//EN
 BEGIN:VEVENT
-SUMMARY:Reservation at 23 SOHO (23 Frith Street)
+SUMMARY:Reservation at AMICA SOHO (23 Frith Street)
 DESCRIPTION:Table reservation for ${formData.guests} guests in ${formData.seatingArea}. Ref: ${bookingId}.
 LOCATION:23 Frith Street, Soho, London W1D 4RR
 DTSTART:${formData.date.replace(/-/g, '')}T180000Z
@@ -30,7 +30,7 @@ END:VCALENDAR`;
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `23_SOHO_Reservation_${bookingId}.ics`);
+    link.setAttribute('download', `AMICA_SOHO_Reservation_${bookingId}.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -60,7 +60,7 @@ END:VCALENDAR`;
             RESERVATION CONFIRMED · DIGITAL PASS #{bookingId}
           </span>
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-[#FDFBF7] tracking-wide">
-            Table Confirmed at 23 SOHO
+            Table Confirmed at AMICA SOHO
           </h2>
           <p className="text-xs text-[#DFBE7B]/80 font-sans">
             Thank you, {formData.name}. We look forward to welcoming you to 23 Frith Street.
@@ -99,7 +99,7 @@ END:VCALENDAR`;
           <div className="space-y-1.5 text-xs text-[#FDFBF7]/80 font-sans">
             <div className="flex items-start gap-2">
               <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0 mt-0.5" />
-              <span>23 SOHO, 23 Frith Street, London W1D 4RR</span>
+              <span>AMICA SOHO, 23 Frith Street, London W1D 4RR</span>
             </div>
             {formData.dietaryNotes && (
               <p className="text-[11px] text-[#DFBE7B] bg-[#121215] p-2 rounded border border-[#C5A059]/20">

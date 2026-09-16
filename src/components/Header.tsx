@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
-import { Wine, Calendar, Menu, X, MapPin, Clock } from 'lucide-react';
-import { BrandLogo } from './BrandLogo';
+import { X, Calendar, ArrowRight, Instagram, MapPin, Phone } from 'lucide-react';
+import { VENUE_INFO } from '../data/venueData';
 
 interface HeaderProps {
   currentPage: PageId;
@@ -10,148 +10,268 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, savedPairingsCount }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Filter out redundant 'book' link from main bar since we have a dedicated prominent BOOK TABLE button
-  const desktopNavItems: { id: PageId; label: string }[] = [
-    { id: 'home', label: 'Home' },
-    { id: 'drinks-food', label: 'Drinks & Food' },
-    { id: 'venue', label: 'The Venue' },
-    { id: 'private-hire', label: 'Private Hire' },
-    { id: 'whats-on', label: 'What’s On' },
-    { id: 'visit', label: 'Visit' },
-  ];
-
-  const mobileNavItems: { id: PageId; label: string }[] = [
-    ...desktopNavItems,
-    { id: 'book', label: 'Book A Table' },
+  const navItems: { id: PageId; label: string; sub?: string }[] = [
+    { id: 'coming-soon', label: 'Coming Soon', sub: '23 Frith St Teaser & VIP Guestlist' },
+    { id: 'home', label: 'Home', sub: 'Atmosphere & Overview' },
+    { id: 'drinks-food', label: 'Cocktails & Menu', sub: 'Aperitivi, Classic Serves & Cicchetti' },
+    { id: 'venue', label: 'About Amica / The Venue', sub: 'Subterranean Vaults & Nocturnal Spirit' },
+    { id: 'private-hire', label: 'Private Hire', sub: 'Exclusive Buyouts & Vault Celebrations' },
+    { id: 'whats-on', label: 'Music / DJs & What’s On', sub: 'Curated Vinyl Soundscapes & Tastings' },
+    { id: 'visit', label: 'Opening Hours & Location', sub: '23 Frith Street & Directions' },
+    { id: 'book', label: 'Book A Table', sub: 'Instant Table Reservation Pass' },
   ];
 
   const handleNavClick = (page: PageId) => {
     onNavigate(page);
-    setMobileMenuOpen(false);
+    setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
-    <header className="sticky top-0 z-40 bg-[#0B0B0C]/95 backdrop-blur-md border-b border-[#C5A059]/30 transition-all duration-300">
-      {/* Top Banner - 23 Soho Facade Notice */}
-      <div className="bg-[#121215] text-[#DFBE7B] text-[10px] sm:text-xs font-display tracking-widest uppercase py-1.5 px-4 text-center border-b border-[#C5A059]/20 flex items-center justify-center gap-2">
-        <span className="inline-block w-2 h-2 rounded-full bg-[#C5A059] animate-pulse"></span>
-        <span>23 SOHO · COCKTAILS · MUSIC · LATE · APERITIVO TUE–SAT 16:30–18:30</span>
-        <button 
-          onClick={() => handleNavClick('book')} 
-          className="underline font-semibold text-[#FFEAA7] hover:text-white transition-colors ml-2 hidden sm:inline cursor-pointer"
-        >
-          Reserve Table
-        </button>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-22">
-          
-          {/* Brand Logo / Typography */}
-          <button 
-            onClick={() => handleNavClick('home')} 
-            className="group text-left focus:outline-none cursor-pointer"
-            aria-label="23 SOHO Home"
+  // If on Coming Soon page, render the exact minimal header from the design:
+  // Left: ΛMICΛ / — SOHO —, Right: HOME (with underline) | COMING SOON
+  // No Book Now button, no hamburger menu, no ticker.
+  if (currentPage === 'coming-soon') {
+    return (
+      <header className="w-full bg-[#050507] border-b border-[#1A0408] select-none z-40 relative">
+        <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-14 h-16 sm:h-20 flex items-center justify-between">
+          {/* Left: ΛMICΛ / — SOHO — */}
+          <div
+            onClick={() => handleNavClick('coming-soon')}
+            className="flex flex-col items-start cursor-pointer group"
           >
-            <BrandLogo size="md" showSubtitle={true} showIcon={true} />
-          </button>
+            <span className="font-['Cinzel',serif] text-base sm:text-xl md:text-2xl tracking-[0.26em] sm:tracking-[0.3em] text-[#E8CCA0] uppercase font-light leading-none group-hover:text-[#FFEAA7] transition-colors">
+              ΛMICΛ
+            </span>
+            <div className="flex items-center gap-1.5 mt-1 text-[#DFBE7B]">
+              <span className="w-3 sm:w-4 h-[1px] bg-[#DFBE7B]/80" />
+              <span className="font-sans text-[7px] sm:text-[8.5px] tracking-[0.34em] uppercase font-medium">
+                SOHO
+              </span>
+              <span className="w-3 sm:w-4 h-[1px] bg-[#DFBE7B]/80" />
+            </div>
+          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
-            {desktopNavItems.map((item) => {
-              const isActive = currentPage === item.id;
-              return (
+          {/* Right: HOME | COMING SOON */}
+          <nav className="flex items-center gap-3 sm:gap-5 text-[10px] sm:text-[11.5px] font-sans tracking-[0.22em] sm:tracking-[0.28em] uppercase">
+            <button
+              onClick={() => handleNavClick('home')}
+              className="relative py-1 text-[#E8CCA0] hover:text-[#FFEAA7] transition-colors cursor-pointer flex flex-col items-center group"
+            >
+              <span>HOME</span>
+              <span className="w-4 sm:w-5 h-[1.5px] bg-[#E8CCA0] mt-1 group-hover:scale-110 transition-transform" />
+            </button>
+
+            <span className="text-[#DFBE7B]/40 select-none">|</span>
+
+            <button
+              onClick={() => handleNavClick('coming-soon')}
+              className="relative py-1 text-[#E8CCA0]/90 hover:text-[#E8CCA0] transition-colors cursor-pointer flex flex-col items-center"
+            >
+              <span>COMING SOON</span>
+            </button>
+          </nav>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <>
+      <header className="sticky top-0 z-40 bg-maroon-deep/95 backdrop-blur-md border-b border-maroon transition-all duration-300">
+        {/* Top Ticker: Signature Velvet Maroon Awning Ticker with Golden Amica Accents */}
+        <div className="bg-maroon-awning text-gold-amica text-[9px] sm:text-[10.5px] font-serif tracking-[0.2em] sm:tracking-[0.28em] uppercase py-1.5 px-3 sm:px-4 text-center border-b border-maroon flex items-center justify-center gap-1.5 sm:gap-4 select-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold-amica animate-pulse shadow-[0_0_8px_#DFBE7B]"></span>
+          <span className="font-medium text-[#F7E7C4]">AMICA SOHO · 23 FRITH STREET</span>
+          <span className="text-[#C5A059] opacity-70">✦</span>
+          <span className="text-gold-amica">APERITIVO • MUSIC • LATE</span>
+        </div>
+
+        <div className="w-full px-3 sm:px-8 lg:px-12">
+          <div className="flex items-center justify-between h-16 sm:h-20 relative">
+            
+            {/* Left: AMICA SOHO Logo with Cocktail Coupe Emblem */}
+            <div className="flex items-center">
+              <button 
+                onClick={() => handleNavClick('coming-soon')} 
+                className="group flex items-center gap-2.5 sm:gap-3 focus:outline-none cursor-pointer min-h-[44px] text-left"
+                aria-label="AMICA SOHO"
+              >
+                <div className="text-gold-amica group-hover:scale-105 transition-transform duration-300">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
+                    <path d="M4 4.5 L20 4.5 L12 13.5 Z" stroke="currentColor" />
+                    <line x1="12" y1="13.5" x2="12" y2="20" stroke="currentColor" />
+                    <line x1="7.5" y1="20" x2="16.5" y2="20" stroke="currentColor" strokeWidth="1.4" />
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-serif text-sm sm:text-base md:text-lg tracking-[0.28em] text-[#FDFBF7] group-hover:text-gold-amica uppercase font-light leading-none drop-shadow-sm">
+                    AMICA
+                  </span>
+                  <div className="flex items-center gap-1.5 mt-0.5 text-gold-amica">
+                    <span className="w-2.5 h-[1px] bg-gradient-to-r from-transparent to-[#DFBE7B]" />
+                    <span className="text-[7.5px] sm:text-[8.5px] font-sans tracking-[0.32em] uppercase font-medium">SOHO</span>
+                    <span className="w-2.5 h-[1px] bg-gradient-to-l from-transparent to-[#DFBE7B]" />
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            {/* Right: HOME | COMING SOON + BOOK NOW + 3-line Hamburger Menu */}
+            <div className="flex items-center gap-3 sm:gap-6">
+              
+              {/* HOME | COMING SOON Navigation (Faithfully matching user screenshot) */}
+              <nav className="flex items-center gap-2 sm:gap-4 text-[10px] sm:text-xs font-sans tracking-[0.2em] sm:tracking-[0.26em] uppercase">
                 <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`px-3 py-2 text-xs font-display tracking-widest uppercase transition-all duration-200 relative inline-flex items-center cursor-pointer ${
-                    isActive
-                      ? 'text-[#FFEAA7] font-bold'
-                      : 'text-[#FDFBF7]/85 hover:text-[#DFBE7B]'
+                  onClick={() => handleNavClick('home')}
+                  className={`relative py-1 cursor-pointer transition-colors min-h-[44px] flex items-center ${
+                    currentPage === 'home'
+                      ? 'text-[#FDFBF7] font-semibold'
+                      : 'text-gold-amica/70 hover:text-gold-amica font-normal'
                   }`}
                 >
-                  <span>{item.label}</span>
-                  {item.id === 'drinks-food' && savedPairingsCount > 0 && (
-                    <span className="inline-flex items-center justify-center align-middle text-[10px] bg-[#C5A059] text-[#0B0B0C] font-bold rounded-full h-4 min-w-[18px] px-1 ml-1.5 shadow-sm">
-                      {savedPairingsCount}
-                    </span>
-                  )}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent rounded-full" />
+                  <span>HOME</span>
+                  {currentPage === 'home' && (
+                    <span className="absolute bottom-1 left-0 right-0 h-[1.5px] bg-[#DFBE7B] shadow-[0_0_8px_#DFBE7B]" />
                   )}
                 </button>
-              );
-            })}
-          </nav>
 
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => handleNavClick('book')}
-              className="btn-brass hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded text-xs cursor-pointer active:scale-95"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book Table</span>
-            </button>
+                <span className="text-[#DFBE7B]/40 select-none">|</span>
 
-            {/* Mobile Hamburger Button (Minimum 44x44px touch target) */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden min-w-[44px] min-h-[44px] p-2 flex items-center justify-center rounded-lg border border-[#C5A059]/40 bg-[#121215] text-[#FDFBF7] hover:text-[#DFBE7B] focus:outline-none cursor-pointer"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+                <button
+                  onClick={() => handleNavClick('coming-soon')}
+                  className={`relative py-1 cursor-pointer transition-colors min-h-[44px] flex items-center ${
+                    currentPage === 'coming-soon'
+                      ? 'text-[#FDFBF7] font-semibold'
+                      : 'text-gold-amica/70 hover:text-gold-amica font-normal'
+                  }`}
+                >
+                  <span>COMING SOON</span>
+                  {currentPage === 'coming-soon' && (
+                    <span className="absolute bottom-1 left-0 right-0 h-[1.5px] bg-[#DFBE7B] shadow-[0_0_8px_#DFBE7B]" />
+                  )}
+                </button>
+              </nav>
+
+              {/* Brushed Gold 'BOOK NOW' Button */}
+              <button
+                onClick={() => handleNavClick('book')}
+                className="hidden sm:flex bg-[#C5A059] hover:bg-[#DFBE7B] text-[#08080A] font-sans font-semibold text-[10px] sm:text-xs tracking-[0.18em] sm:tracking-[0.22em] uppercase min-h-[44px] py-2 sm:py-2.5 px-3 sm:px-5 transition-all duration-200 cursor-pointer shadow-[0_4px_14px_rgba(74,14,23,0.5)] active:scale-95 whitespace-nowrap border border-[#FFEAA7]/40 items-center justify-center rounded-sm"
+              >
+                BOOK NOW
+              </button>
+
+              {/* Minimal 3-Line Hamburger Trigger with min 44x44px touch target */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="w-11 h-11 min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-1.5 p-2 rounded bg-burgundy border border-maroon-gold text-gold-amica hover:text-[#FFEAA7] hover:bg-maroon-awning hover:border-gold-amica transition-colors focus:outline-none cursor-pointer shadow-sm active:scale-95"
+                aria-label="Toggle navigation menu"
+              >
+                <span className={`block w-5 h-[1.5px] bg-current transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`block w-5 h-[1.5px] bg-current transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-5 h-[1.5px] bg-current transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </button>
+            </div>
+
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#121215] border-b border-[#C5A059]/40 px-4 pt-3 pb-6 space-y-3 animate-fadeIn shadow-2xl">
-          <div className="pt-1 pb-2 space-y-1">
-            {mobileNavItems.map((item) => {
-              const isActive = currentPage === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`w-full text-left px-4 py-3 text-sm font-display tracking-wider uppercase rounded-lg transition-colors flex items-center justify-between cursor-pointer ${
-                    isActive
-                      ? 'bg-[#1C1C22] text-[#FFEAA7] font-bold border-l-4 border-[#C5A059]'
-                      : 'text-[#FDFBF7] hover:bg-[#18181D] hover:text-[#DFBE7B]'
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  {item.id === 'drinks-food' && savedPairingsCount > 0 && (
-                    <span className="px-2 py-0.5 text-xs bg-[#C5A059] text-[#0B0B0C] font-bold rounded-full">
-                      {savedPairingsCount} saved
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
+      {/* Luxury Fullscreen/Slide Navigation Drawer */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 flex bg-maroon-deep/95 backdrop-blur-2xl animate-fadeIn">
+          <div className="relative w-full max-w-2xl ml-auto bg-maroon-deep border-l border-maroon h-full flex flex-col justify-between p-6 sm:p-10 overflow-y-auto">
+            
+            {/* Awning-inspired curved header block in rich velvet maroon & gold */}
+            <div className="awning-badge relative rounded-xl p-6 border-maroon-gold shadow-[0_8px_30px_rgba(74,14,23,0.6)] text-center mb-6">
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="absolute top-4 right-4 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-burgundy border border-maroon-gold hover:border-gold-amica flex items-center justify-center text-[#FDFBF7] hover:text-gold-amica transition-colors cursor-pointer"
+                aria-label="Close navigation"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
-          <div className="pt-3 border-t border-[#C5A059]/20 space-y-3">
-            <button
-              onClick={() => handleNavClick('book')}
-              className="btn-brass w-full py-3.5 text-xs rounded-lg flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <Calendar className="w-4 h-4" />
-              <span>Book A Table</span>
-            </button>
-
-            <div className="text-xs text-[#DFBE7B] flex items-center justify-center gap-4 pt-1 font-sans">
-              <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-[#C5A059]" /> 23 Frith St, Soho</span>
-              <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-[#C5A059]" /> Tue–Sat from 16:30</span>
+              <span className="text-[9px] font-sans tracking-[0.3em] uppercase text-gold-subtle block mb-1">
+                23 FRITH STREET · SOHO
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#FDFBF7] tracking-[0.25em] uppercase font-light drop-shadow-md">
+                AMICA
+              </h2>
+              <span className="font-serif text-sm tracking-[0.4em] text-gold-amica uppercase block -mt-1 font-medium">
+                S O H O
+              </span>
+              <div className="w-16 h-[1px] bg-gold-subtle mx-auto my-3 opacity-80" />
+              <p className="text-[10px] font-serif tracking-[0.35em] text-[#FFEAA7] uppercase">
+                APERITIVO &nbsp;•&nbsp; MUSIC &nbsp;•&nbsp; LATE
+              </p>
             </div>
+
+            {/* Navigation Links with Maroon and Gold accents */}
+            <nav className="space-y-3">
+              {navItems.map((item, idx) => {
+                const isActive = currentPage === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`w-full group text-left flex items-center justify-between p-3.5 min-h-[48px] rounded-lg border transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-burgundy border-maroon-gold text-[#FFEAA7] shadow-md'
+                        : 'bg-burgundy-dark/80 border-maroon hover:bg-burgundy hover:border-maroon-gold'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-[10px] font-mono text-gold-subtle">0{idx + 1}</span>
+                        <span className={`font-serif text-lg sm:text-xl tracking-wide transition-colors ${
+                          isActive ? 'text-gold-amica font-semibold' : 'text-[#FDFBF7] group-hover:text-gold-amica'
+                        }`}>
+                          {item.label}
+                        </span>
+                      </div>
+                      {item.sub && (
+                        <p className="text-xs text-gold-subtle/80 pl-7 font-sans">{item.sub}</p>
+                      )}
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-gold-subtle group-hover:text-gold-amica group-hover:translate-x-1 transition-all" />
+                  </button>
+                );
+              })}
+            </nav>
+
+            {/* Drawer Footer Info */}
+            <div className="pt-6 border-t border-maroon space-y-4 text-xs text-gold-subtle">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <p className="text-[#FDFBF7] font-serif tracking-wider uppercase text-sm">23 Frith Street, Soho</p>
+                  <p className="text-[11px] text-gold-subtle">London W1D 4RR</p>
+                </div>
+                <div>
+                  <p className="text-[#FDFBF7] font-serif tracking-wider uppercase text-sm">Hours</p>
+                  <p className="text-[11px] text-gold-subtle">Tue – Sun: 17:00 – Late</p>
+                </div>
+              </div>
+              <div className="pt-2 flex items-center gap-6 text-gold-amica">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5 min-h-[44px]">
+                  <Instagram className="w-4 h-4" />
+                  <span>Instagram</span>
+                </a>
+                <a href="tel:+442079460192" className="hover:text-white transition-colors flex items-center gap-1.5 min-h-[44px]">
+                  <Phone className="w-4 h-4" />
+                  <span>Call Us</span>
+                </a>
+                <a href="https://maps.google.com/?q=23+Frith+Street+Soho+London" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5 min-h-[44px]">
+                  <MapPin className="w-4 h-4" />
+                  <span>Map</span>
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
