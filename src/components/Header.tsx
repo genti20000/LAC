@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, savedPa
   if (currentPage === 'coming-soon') {
     return (
       <header className="w-full bg-[#050507] border-b border-[#1A0408] select-none z-40 relative">
-        <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-14 h-16 sm:h-20 flex items-center justify-between">
+        <div className="w-full px-5 sm:px-10 lg:px-14 h-16 sm:h-20 flex items-center justify-between">
           {/* Left: ΛMICΛ / — SOHO — */}
           <div
             onClick={() => handleNavClick('coming-soon')}
